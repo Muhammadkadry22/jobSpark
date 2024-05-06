@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\jobSpark.Domain\jobSpark.Domain.csproj" />
+    <ProjectReference Include="..\jobSpark.Infrastructure\jobSpark.Infrastructure.csproj" />
+    <ProjectReference Include="..\jobSpark.Service\jobSpark.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\achievement\commands\Handler\" />
+    <Folder Include="Features\achievement\commands\Model\" />
+    <Folder Include="Features\achievement\commands\Validator\" />
+    <Folder Include="Features\achievement\queries\Handler\" />
+    <Folder Include="Features\achievement\queries\Model\" />
+    <Folder Include="Features\achievement\queries\Dtos\" />
+    <Folder Include="Features\ApplicationUser\" />
+    <Folder Include="Features\Authentication\" />
+    <Folder Include="Features\Autherization\" />
+    <Folder Include="Features\Applicant\" />
+    <Folder Include="Features\Company\" />
+    <Folder Include="Features\category\" />
+    <Folder Include="Features\certification\" />
+    <Folder Include="Features\workingHistory\" />
+    <Folder Include="Features\project\" />
+    <Folder Include="Features\vacancy\" />
+    <Folder Include="Features\skills\" />
+    <Folder Include="mapping\" />
+  </ItemGroup>
+
+</Project>
