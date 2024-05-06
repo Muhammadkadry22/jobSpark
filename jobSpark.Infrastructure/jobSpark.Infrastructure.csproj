@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Abstractions\" />
-    <Folder Include="context\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
