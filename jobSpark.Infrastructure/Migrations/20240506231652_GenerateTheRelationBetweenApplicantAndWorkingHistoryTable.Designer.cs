@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using jobSpark.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using jobSpark.Infrastructure.Context;
 namespace jobSpark.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240506231652_GenerateTheRelationBetweenApplicantAndWorkingHistoryTable")]
+    partial class GenerateTheRelationBetweenApplicantAndWorkingHistoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,37 +99,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.ToTable("Applicants");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.ApplicantVacancy", b =>
-                {
-                    b.Property<int>("ApplicantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VacancyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicantId", "VacancyId");
-
-                    b.HasIndex("VacancyId");
-
-                    b.ToTable("ApplicantsVacancies");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.Certification", b =>
                 {
                     b.Property<int>("Id")
@@ -157,52 +129,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.ToTable("Certifications");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.Company", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Brief")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HeadQuarter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Industry")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LaunchYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Revenue")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Companies");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -228,68 +154,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.HasIndex("ApplicantId");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ApplicantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicantId");
-
-                    b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Vacancy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ApplicantCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OpenDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ReviewCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("State")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Vacancies");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.WorkingHistory", b =>
@@ -343,25 +207,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Navigation("WorkingHistories");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.ApplicantVacancy", b =>
-                {
-                    b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
-                        .WithMany("ApplicantVacancies")
-                        .HasForeignKey("ApplicantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("jobSpark.Domain.Entities.Vacancy", "Vacancy")
-                        .WithMany("ApplicantVacancies")
-                        .HasForeignKey("VacancyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Applicant");
-
-                    b.Navigation("Vacancy");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.Certification", b =>
                 {
                     b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
@@ -380,30 +225,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Navigation("Applicant");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.Skill", b =>
-                {
-                    b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
-                        .WithMany("Skills")
-                        .HasForeignKey("ApplicantId");
-
-                    b.Navigation("Applicant");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Vacancy", b =>
-                {
-                    b.HasOne("jobSpark.Domain.Entities.Category", "Category")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("jobSpark.Domain.Entities.Company", "Company")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.WorkingHistory", b =>
                 {
                     b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
@@ -415,20 +236,11 @@ namespace jobSpark.Infrastructure.Migrations
 
             modelBuilder.Entity("jobSpark.Domain.Entities.Applicant", b =>
                 {
-                    b.Navigation("ApplicantVacancies");
-
                     b.Navigation("Certifications");
 
                     b.Navigation("Projects");
 
-                    b.Navigation("Skills");
-
                     b.Navigation("WorkingHistories");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Category", b =>
-                {
-                    b.Navigation("Vacancies");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.Certification", b =>
@@ -436,19 +248,9 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Navigation("Achievements");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.Company", b =>
-                {
-                    b.Navigation("Vacancies");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.Project", b =>
                 {
                     b.Navigation("Achievements");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Vacancy", b =>
-                {
-                    b.Navigation("ApplicantVacancies");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.WorkingHistory", b =>
