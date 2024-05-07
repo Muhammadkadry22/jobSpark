@@ -8,7 +8,7 @@ using jobSpark.Domain.Entities;
 
 namespace jobSpark.Infrastructure.Abstractions
 {
-    public interface IApplicantRepository : IGenericRepository<applicant>
+    public interface IApplicantRepository : IGenericRepository<Applicant>
     {
     }
 }

@@ -9,7 +9,7 @@ using jobSpark.Infrastructure.Context;
 using jobSpark.Infrastructure.InfrastructureBases;
 namespace jobSpark.Infrastructure.Repositories
 {
-    public class ApplicantRepository : GenericRepository<applicant>,IApplicantRepository
+    public class ApplicantRepository : GenericRepository<Applicant>,IApplicantRepository
     {
         
         public ApplicantRepository(ApplicationDbContext context) : base(context)
