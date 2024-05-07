@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jobSpark.Domain.Entities
+namespace jobSpark.Infrastructure.UnitOfWork
 {
-    public class applicant
+    public interface IUnitOfWork : IDisposable
     {
+        Task SaveChangesAsync();
     }
 }
