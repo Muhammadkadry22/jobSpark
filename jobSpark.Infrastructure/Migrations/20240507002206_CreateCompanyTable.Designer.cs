@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using jobSpark.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using jobSpark.Infrastructure.Context;
 namespace jobSpark.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240507002206_CreateCompanyTable")]
+    partial class CreateCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,21 +97,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Applicants");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.ApplicantVacancy", b =>
-                {
-                    b.Property<int>("ApplicantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VacancyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicantId", "VacancyId");
-
-                    b.HasIndex("VacancyId");
-
-                    b.ToTable("ApplicantsVacancies");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.Category", b =>
@@ -265,9 +253,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -286,8 +271,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("CompanyId");
 
                     b.ToTable("Vacancies");
                 });
@@ -343,25 +326,6 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Navigation("WorkingHistories");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.ApplicantVacancy", b =>
-                {
-                    b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
-                        .WithMany("ApplicantVacancies")
-                        .HasForeignKey("ApplicantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("jobSpark.Domain.Entities.Vacancy", "Vacancy")
-                        .WithMany("ApplicantVacancies")
-                        .HasForeignKey("VacancyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Applicant");
-
-                    b.Navigation("Vacancy");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.Certification", b =>
                 {
                     b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
@@ -395,13 +359,7 @@ namespace jobSpark.Infrastructure.Migrations
                         .WithMany("Vacancies")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("jobSpark.Domain.Entities.Company", "Company")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("CompanyId");
-
                     b.Navigation("Category");
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.WorkingHistory", b =>
@@ -415,8 +373,6 @@ namespace jobSpark.Infrastructure.Migrations
 
             modelBuilder.Entity("jobSpark.Domain.Entities.Applicant", b =>
                 {
-                    b.Navigation("ApplicantVacancies");
-
                     b.Navigation("Certifications");
 
                     b.Navigation("Projects");
@@ -436,19 +392,9 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Navigation("Achievements");
                 });
 
-            modelBuilder.Entity("jobSpark.Domain.Entities.Company", b =>
-                {
-                    b.Navigation("Vacancies");
-                });
-
             modelBuilder.Entity("jobSpark.Domain.Entities.Project", b =>
                 {
                     b.Navigation("Achievements");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Vacancy", b =>
-                {
-                    b.Navigation("ApplicantVacancies");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.WorkingHistory", b =>
