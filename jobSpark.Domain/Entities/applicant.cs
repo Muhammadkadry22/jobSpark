@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Domain.Entities
 {
-    public class Applicant
+
+    public class applicant
+
     {
         [Key]
         public int Id { get; set; }
