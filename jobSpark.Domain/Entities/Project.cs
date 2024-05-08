@@ -18,10 +18,10 @@ namespace jobSpark.Domain.Entities
         public int? ApplicantId { get; set; }
 
         [ForeignKey("ApplicantId")]
-        public Applicant? Applicant { get; set; }
+        public virtual Applicant? Applicant { get; set; }
 
 
-        public ICollection<Achievement> Achievements { get; set;} =new HashSet<Achievement>();
+        public virtual ICollection<Achievement> Achievements { get; set;} =new HashSet<Achievement>();
 
 
     }

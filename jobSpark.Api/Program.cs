@@ -1,3 +1,6 @@
+using jobSpark.core;
+using jobSpark.Service;
+using jobSpark.Infrastructure;
 using jobSpark.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
-    option=>option.UseSqlServer(builder.Configuration.GetConnectionString("Connection"))
+    option => option.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("Connection"))
     );
+builder.Services.AddInfrustructureDependencies()
+                .AddCoreDependencies()
+                .AddServiceDependencies();
+
+
 
 var app = builder.Build();
 

@@ -1,17 +1,16 @@
-﻿using jobSpark.Domain.Enum;
+﻿using jobSpark.Domain.Entities;
+using jobSpark.Domain.Enum;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jobSpark.Domain.Entities
+namespace jobSpark.core.Features.vacancy.queries.Dtos
 {
-    public class Vacancy
+    public class GetVacancyListDto
     {
-        [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
         public DateTime OpenDate { get; set; }
@@ -20,11 +19,8 @@ namespace jobSpark.Domain.Entities
         public int? ApplicantCount { get; set; }
         public int? ReviewCount { get; set; }
         public int? CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
-        public virtual Category? Category { get; set; }
+        public string? CategoryName { get; set; }
         public int? CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-        public virtual Company? Company { get; set; }
-        public virtual ICollection<ApplicantVacancy> ApplicantVacancies { get; set; }
+        public string? CompanyName { get; set; }
     }
 }
