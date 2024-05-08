@@ -12,6 +12,6 @@ namespace jobSpark.Domain.Entities
         [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
-        public ICollection<Vacancy> Vacancies { get; set; }=new HashSet<Vacancy>();
+        public virtual ICollection<Vacancy> Vacancies { get; set; }=new HashSet<Vacancy>();
     }
 }

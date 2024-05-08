@@ -15,6 +15,6 @@ namespace jobSpark.Domain.Entities
         public string? Name { get; set; }
         public int? ApplicantId { get; set; }
         [ForeignKey("ApplicantId")]
-        public Applicant? Applicant { get; set; }
+        public virtual Applicant? Applicant { get; set; }
     }
 }

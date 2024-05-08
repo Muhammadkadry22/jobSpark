@@ -16,15 +16,15 @@ namespace jobSpark.Domain.Entities
         public int? ProjectId { get; set; }
 
         [ForeignKey("ProjectId")]
-        public Project? Project { get; set; }
+        public virtual Project? Project { get; set; }
 
         public int? CertificationId { get; set; }
         [ForeignKey("CertificationId")]
-        public Certification? Certifications { get; set; }
+        public virtual Certification? Certifications { get; set; }
 
         public int? WorkingHistoryId { get; set; }
         [ForeignKey("WorkingHistoryId")]
-        public WorkingHistory? WorkingHistories { get; set; }
+        public virtual WorkingHistory? WorkingHistories { get; set; }
       
     }
 }

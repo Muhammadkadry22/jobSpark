@@ -24,12 +24,12 @@ namespace jobSpark.Domain.Entities
         public string? Description { get; set; }
         public string? Email { get; set; }
         
-        public ICollection<Project> Projects { get; set; }=new HashSet<Project>();
-        public ICollection<Certification> Certifications { get; set; } = new HashSet<Certification>();
-        public ICollection<WorkingHistory> WorkingHistories { get; set; }= new HashSet<WorkingHistory>();
-        public ICollection<Skill> Skills { get; set; }=new HashSet<Skill>();
-        public ICollection<ApplicantVacancy> ApplicantVacancies { get; set; }
-        
+        public virtual ICollection<Project> Projects { get; set; }=new HashSet<Project>();
+        public virtual ICollection<Certification> Certifications { get; set; } = new HashSet<Certification>();
+        public virtual ICollection<WorkingHistory> WorkingHistories { get; set; }= new HashSet<WorkingHistory>();
+        public virtual ICollection<Skill> Skills { get; set; }=new HashSet<Skill>();
+        public virtual ICollection<ApplicantVacancy> ApplicantVacancies { get; set; }
+               
 
 
     }

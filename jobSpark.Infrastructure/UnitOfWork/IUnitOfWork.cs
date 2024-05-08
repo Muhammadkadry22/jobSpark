@@ -1,4 +1,5 @@
-﻿using System;
+﻿using jobSpark.Infrastructure.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
+        IVacancyRepository Vacancies { get; }
         Task SaveChangesAsync();
     }
 }
