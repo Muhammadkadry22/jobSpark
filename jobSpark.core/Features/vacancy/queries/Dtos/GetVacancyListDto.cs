@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.vacancy.queries.Dtos
 {
-    public class GetCompanyListDto
+    public class GetVacancyListDto
     {
         public int Id { get; set; }
         public string? Name { get; set; }

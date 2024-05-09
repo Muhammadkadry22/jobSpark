@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.Company.Queries.Dtos
 {
-    public class GetCompanyListQuery
+    public class GetCompanyListDto
     {
     }
 }
