@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Service.Abstracts
 {
-    public interface IVacancyService
+    public interface ICategoryService
     {
-        public Task<List<Vacancy>> GetVacancyListAsync();
-        public Task<Vacancy> GetVacancyByIdAsync(int id);
+        public Task<List<Category>> GetCategoryListAsync(); 
     }
 }

@@ -14,7 +14,9 @@ using System.Threading.Tasks;
 namespace jobSpark.core.Features.vacancy.queries.Handler
 {
     public class VacancyQueryHandler : ResponseHandler,
-                                       IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>
+                                       IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>, 
+                                         IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>
+
     {
         private readonly IMapper mapper;
         private readonly IVacancyService vacancyService;
@@ -31,5 +33,16 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
             var result = Success(vacancyMapper);
             return result;
         }
+
+        public async Task<Response<GetVacancyByIdDto>> Handle(GetVacancyByIdQuery request, CancellationToken cancellationToken)
+        {
+            var vacancy = await vacancyService.GetVacancyByIdAsync(request.Id);
+            if (vacancy == null) return NotFound<GetVacancyByIdDto>();
+            var vacancyMapper = mapper.Map<GetVacancyByIdDto>(vacancy);
+            var result = Success(vacancyMapper);
+            return result;
+        }
+
+
     }
 }

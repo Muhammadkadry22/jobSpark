@@ -20,9 +20,14 @@ namespace jobSpark.Service.implementations
           
             this.unitOfWork = unitOfWork;
         }
+
         public async Task<List<Vacancy>> GetVacancyListAsync()
         {
             return await unitOfWork.Vacancies.GetVacanciesAsync();
+        }
+        public async Task<Vacancy> GetVacancyByIdAsync(int id)
+        {
+            return await unitOfWork.Vacancies.GetByIdAsync(id);
         }
     }
 }
