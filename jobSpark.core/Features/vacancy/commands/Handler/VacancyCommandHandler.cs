@@ -26,7 +26,7 @@ namespace jobSpark.core.Features.vacancy.commands.Handler
         public async Task<Response<string>> Handle(AddVacancyCommand request, CancellationToken cancellationToken)
         {
             var vacancyMapper = mapper.Map<Vacancy>(request);
-            var result = await vacancyService.AddVacacny(vacancyMapper);
+            var result = await vacancyService.AddVacany(vacancyMapper);
             if (result == "Added")
                 return Created("");
             else return BadRequest<string>();

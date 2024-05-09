@@ -17,10 +17,6 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
 
                                        IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>, 
                                          IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>
-
-
-                                       IRequestHandler<GetVacancyListQuery, Response<List<GetCompanyListDto>>>
-
     {
         private readonly IMapper mapper;
         private readonly IVacancyService vacancyService;
@@ -30,10 +26,10 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
             this.mapper = mapper;
             this.vacancyService = vacancyService;
         }
-        public async Task<Response<List<GetCompanyListDto>>> Handle(GetVacancyListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetVacancyListDto>>> Handle(GetVacancyListQuery request, CancellationToken cancellationToken)
         {
             var VacancyList = await vacancyService.GetVacancyListAsync();
-            var vacancyMapper = mapper.Map<List<GetCompanyListDto>>(VacancyList);
+            var vacancyMapper = mapper.Map<List<GetVacancyListDto>>(VacancyList);
             var result = Success(vacancyMapper);
             return result;
         }

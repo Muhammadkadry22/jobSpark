@@ -1,4 +1,5 @@
-﻿using jobSpark.Domain.Entities;
+﻿using Azure;
+using jobSpark.Domain.Entities;
 using jobSpark.Infrastructure.Abstractions;
 using jobSpark.Infrastructure.Context;
 using jobSpark.Infrastructure.InfrastructureBases;
@@ -23,6 +24,9 @@ namespace jobSpark.Infrastructure
             services.AddTransient<IVacancyRepository, VacancyRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
             services.AddTransient<IUnitOfWork, unitOfWork>();
+
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+
 
 
             return services;

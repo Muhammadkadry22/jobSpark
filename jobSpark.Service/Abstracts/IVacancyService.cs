@@ -13,7 +13,7 @@ namespace jobSpark.Service.Abstracts
 
         public Task<Vacancy> GetVacancyByIdAsync(int id);
 
-        public Task<string> AddVacacny(Vacancy vacancy);
+        public Task<string> AddVacany(Vacancy vacancy);
 
     }
 }
