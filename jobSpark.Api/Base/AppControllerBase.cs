@@ -1,4 +1,4 @@
-﻿using Azure;
+﻿using jobSpark.core.Bases;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,9 +6,7 @@ using jobSpark.core.Bases;
 using System.Net;
 
 namespace jobSpark.Api.Base
-{
-    [Route("api/[controller]")]
-    [ApiController]
+{    [ApiController]
     public class AppControllerBase : ControllerBase
     {
         private IMediator _mediatorInstance;
@@ -16,7 +14,6 @@ namespace jobSpark.Api.Base
  
         public ObjectResult NewResult<T>(core.Bases.Response<T> response)
         {
-            // there is no list here
             switch (response.StatusCode)
             {
                 case HttpStatusCode.OK:

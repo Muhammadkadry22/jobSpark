@@ -13,6 +13,7 @@ namespace jobSpark.core.Bases
         {
 
         }
+
         public Response(T data, string message = null)
         {
             Succeeded = true;
