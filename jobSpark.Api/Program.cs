@@ -22,9 +22,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(
     option => option.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("Connection"))
     );
-builder.Services.AddInfrustructureDependencies()
+
+/*builder.Services.AddInfrustructureDependencies()
                 .AddCoreDependencies()
-                .AddServiceDependencies();
+                .AddServiceDependencies();*/
 
 
 
