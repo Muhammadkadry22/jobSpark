@@ -13,11 +13,11 @@ namespace jobSpark.Domain.Entities
         public string? Name { get; set; }
         public string? Institution  { get; set; }
         public string? Image { get; set; }
-        public DateTime CompletedDate { get; set; }
+        public  DateTime CompletedDate { get; set; }
         public int? ApplicantId { get; set; }
 
         [ForeignKey("ApplicantId")]
-        public Applicant? Applicant { get; set; }
-        public ICollection<Achievement> Achievements { get; set;}=new HashSet<Achievement>();
+        public virtual Applicant? Applicant { get; set; }
+        public virtual ICollection<Achievement> Achievements { get; set;}=new HashSet<Achievement>();
     }
 }

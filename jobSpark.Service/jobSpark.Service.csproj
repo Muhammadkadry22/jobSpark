@@ -11,4 +11,8 @@
     <ProjectReference Include="..\jobSpark.Infrastructure\jobSpark.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.4" />
+  </ItemGroup>
+
 </Project>

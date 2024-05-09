@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jobSpark.Domain.Enum
+namespace jobSpark.core.Features.Company.Commands.Handler
 {
-    public enum EState
+    public class CompanyCommandHandler
     {
-        Open,
-        Close
     }
 }

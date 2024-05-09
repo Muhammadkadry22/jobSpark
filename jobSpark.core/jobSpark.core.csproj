@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.4" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
@@ -22,6 +23,7 @@
     <Folder Include="Features\achievement\commands\Handler\" />
     <Folder Include="Features\achievement\commands\Model\" />
     <Folder Include="Features\achievement\commands\Validator\" />
+    <Folder Include="Features\achievement\queries\Dtos\" />
     <Folder Include="Features\achievement\queries\Handler\" />
     <Folder Include="Features\achievement\queries\Model\" />
     <Folder Include="Features\achievement\queries\Dtos\" />
@@ -30,12 +32,13 @@
     <Folder Include="Features\Authentication\" />
     <Folder Include="Features\Autherization\" />
     <Folder Include="Features\Applicant\" />
-    <Folder Include="Features\Company\" />
     <Folder Include="Features\category\" />
     <Folder Include="Features\certification\" />
+    <Folder Include="Features\Company\Commands\Models\" />
+    <Folder Include="Features\Company\Commands\Validator\" />
+    <Folder Include="Features\vacancy\commands\Validator\" />
     <Folder Include="Features\workingHistory\" />
     <Folder Include="Features\project\" />
-    <Folder Include="Features\vacancy\" />
     <Folder Include="Features\skills\" />
   </ItemGroup>
 

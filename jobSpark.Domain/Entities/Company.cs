@@ -23,6 +23,6 @@ namespace jobSpark.Domain.Entities
         public string? Phone { get; set; }
         public string? Website { get; set; }
 
-        public ICollection<Vacancy> Vacancies { get; set; }=new HashSet<Vacancy>();
+        public virtual ICollection<Vacancy> Vacancies { get; set; }=new HashSet<Vacancy>();
     }
 }

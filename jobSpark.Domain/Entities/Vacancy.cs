@@ -17,14 +17,14 @@ namespace jobSpark.Domain.Entities
         public DateTime OpenDate { get; set; }
         public EState State { get; set; }
         public string? Description { get; set; }
-        public int? ApplicantCount { get; set; }
-        public int? ReviewCount { get; set; }
-        public int? CategoryId { get; set; }
+        public int? ApplicantCount { get; set; } = 0;
+        public int? ReviewCount { get; set; } =0;
+        public int? CategoryId { get; set; } 
         [ForeignKey("CategoryId")]
-        public Category? Category { get; set; }
+        public virtual Category? Category { get; set; }
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        public Company? Company { get; set; }
-        public ICollection<ApplicantVacancy> ApplicantVacancies { get; set; }
+        public virtual Company? Company { get; set; }
+        public virtual ICollection<ApplicantVacancy> ApplicantVacancies { get; set; }
     }
 }

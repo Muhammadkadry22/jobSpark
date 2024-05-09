@@ -41,3 +41,4 @@ namespace jobSpark.core.Bases
         public T Data { get; set; }
     }
 }
+

@@ -1,16 +1,18 @@
 ﻿using jobSpark.core.Bases;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using jobSpark.core.Bases;
 using System.Net;
 
 namespace jobSpark.Api.Base
-{
+{    [ApiController]
     public class AppControllerBase : ControllerBase
     {
         private IMediator _mediatorInstance;
         protected IMediator Mediator => _mediatorInstance ??= HttpContext.RequestServices.GetService<IMediator>();
-
-        public ObjectResult NewResult<T>(Response<T> response)
+ 
+        public ObjectResult NewResult<T>(core.Bases.Response<T> response)
         {
             switch (response.StatusCode)
             {
