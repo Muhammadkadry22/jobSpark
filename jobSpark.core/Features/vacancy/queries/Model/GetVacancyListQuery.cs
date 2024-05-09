@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.vacancy.queries.Model
 {
-    public class GetVacancyListQuery : IRequest<Response<List<GetVacancyListDto>>>
+    public class GetVacancyListQuery : IRequest<Response<List<GetCompanyListDto>>>
     {
-
+       
     }
 }

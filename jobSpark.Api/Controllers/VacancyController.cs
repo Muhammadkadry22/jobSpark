@@ -1,4 +1,5 @@
 ﻿using jobSpark.Api.Base;
+using jobSpark.core.Features.vacancy.commands.Model;
 using jobSpark.core.Features.vacancy.queries.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace jobSpark.Api.Controllers
             return NewResult(response);
         }
 
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVacancyById(int id)
         {
@@ -30,5 +32,12 @@ namespace jobSpark.Api.Controllers
             return NewResult(response);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] AddVacancyCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
     }
 }

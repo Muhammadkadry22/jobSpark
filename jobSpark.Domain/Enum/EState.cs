@@ -8,7 +8,7 @@ namespace jobSpark.Domain.Enum
 {
     public enum EState
     {
-        Opene,
+        Open,
         Close
     }
 }

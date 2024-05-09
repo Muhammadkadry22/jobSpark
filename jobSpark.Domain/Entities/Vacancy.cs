@@ -17,9 +17,9 @@ namespace jobSpark.Domain.Entities
         public DateTime OpenDate { get; set; }
         public EState State { get; set; }
         public string? Description { get; set; }
-        public int? ApplicantCount { get; set; }
-        public int? ReviewCount { get; set; }
-        public int? CategoryId { get; set; }
+        public int? ApplicantCount { get; set; } = 0;
+        public int? ReviewCount { get; set; } =0;
+        public int? CategoryId { get; set; } 
         [ForeignKey("CategoryId")]
         public virtual Category? Category { get; set; }
         public int? CompanyId { get; set; }

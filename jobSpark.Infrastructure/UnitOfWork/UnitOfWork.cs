@@ -14,13 +14,21 @@ namespace jobSpark.Infrastructure.UnitOfWork
         private readonly ApplicationDbContext _context;
 
         public IVacancyRepository Vacancies { get; private set; }
+
          public ICategoryRepository Categories { get; private set; }
+
+        public ICompanyRepository Companies { get; }
+
 
         public unitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Vacancies = new VacancyRepository(_context);
+
             Categories=new CategoryRepository(_context);
+
+            Companies = new CompanyRepository(_context);
+
         }
 
         public async Task SaveChangesAsync()
@@ -36,5 +44,5 @@ namespace jobSpark.Infrastructure.UnitOfWork
        
         
 
-    }
+}
 
