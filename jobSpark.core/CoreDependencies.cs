@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿/*using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace jobSpark.core
@@ -15,3 +15,4 @@ namespace jobSpark.core
         }
     }
 }
+*/

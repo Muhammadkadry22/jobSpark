@@ -9,7 +9,8 @@ namespace jobSpark.Service
 
         public static IServiceCollection AddServiceDependencies(this IServiceCollection services)
         {
-
+            services.AddTransient<IVacancyService, VacancyService>();
+            services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
     
             return services;
