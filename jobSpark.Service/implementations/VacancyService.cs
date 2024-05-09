@@ -24,5 +24,12 @@ namespace jobSpark.Service.implementations
         {
             return await unitOfWork.Vacancies.GetVacanciesAsync();
         }
+
+        public async Task<string> AddVacacny(Vacancy vacancy)
+        {
+            await unitOfWork.Vacancies.AddAsync(vacancy);
+            await unitOfWork.SaveChangesAsync();
+            return "Added";
+        }
     }
 }
