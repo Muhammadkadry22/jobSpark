@@ -10,7 +10,11 @@ namespace jobSpark.Infrastructure.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         IVacancyRepository Vacancies { get; }
+
+        ICategoryRepository Categories { get; }
+
         ICompanyRepository Companies { get; }
+
         Task SaveChangesAsync();
     }
 }

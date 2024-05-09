@@ -9,7 +9,11 @@ namespace jobSpark.Service
       /*  public static IServiceCollection AddServiceDependencies(this IServiceCollection services)
         {
             services.AddTransient<IVacancyService, VacancyService>();
+
+            services.AddTransient<ICategoryService, CategoryService>();
+
             services.AddTransient<ICompanyService, CompanyService>();
+
             return services;
         }*/
     }

@@ -10,6 +10,10 @@ namespace jobSpark.Service.Abstracts
     public interface IVacancyService
     {
         public Task<List<Vacancy>> GetVacancyListAsync();
+
+        public Task<Vacancy> GetVacancyByIdAsync(int id);
+
         public Task<string> AddVacacny(Vacancy vacancy);
+
     }
 }
