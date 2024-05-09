@@ -11,9 +11,4 @@
     <ProjectReference Include="..\jobSpark.Infrastructure\jobSpark.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="implementations\" />
-  </ItemGroup>
-
 </Project>
