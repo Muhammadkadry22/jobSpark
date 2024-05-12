@@ -21,6 +21,8 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
         public ISkillRepository Skills { get; private set; }
 
+        public IWorkingHistoryRepository WorkingHistories { get; private set; }
+
         public unitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -30,7 +32,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
             Companies = new CompanyRepository(_context);
             Skills = new SkillRepository(_context);
-
+            WorkingHistories = new WorkingHistoryRepository(_context);
         }
 
         public async Task SaveChangesAsync()
