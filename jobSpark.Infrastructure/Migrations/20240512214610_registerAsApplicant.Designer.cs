@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using jobSpark.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using jobSpark.Infrastructure.Context;
 namespace jobSpark.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240512214610_registerAsApplicant")]
+    partial class registerAsApplicant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,15 +339,10 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Property<int?>("Size")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Website")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Companies");
                 });
@@ -640,15 +638,6 @@ namespace jobSpark.Infrastructure.Migrations
                         .HasForeignKey("ApplicantId");
 
                     b.Navigation("Applicant");
-                });
-
-            modelBuilder.Entity("jobSpark.Domain.Entities.Company", b =>
-                {
-                    b.HasOne("jobSpark.Domain.Entities.User", "user")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.Project", b =>
