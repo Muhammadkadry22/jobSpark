@@ -40,10 +40,10 @@
     <Folder Include="Features\certification\" />
     <Folder Include="Features\Company\Commands\Models\" />
     <Folder Include="Features\Company\Commands\Validator\" />
+    <Folder Include="Features\skills\queries\" />
     <Folder Include="Features\vacancy\commands\Validator\" />
     <Folder Include="Features\workingHistory\" />
     <Folder Include="Features\project\" />
-    <Folder Include="Features\skills\" />
   </ItemGroup>
 
 </Project>

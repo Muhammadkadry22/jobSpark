@@ -9,19 +9,18 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Service.implementations
 {
-    public class CompanyService : ICompanyService
+    public class SkillSevice : ISkillSevice
     {
         private readonly IUnitOfWork unitOfWork;
-
-        public CompanyService(IUnitOfWork unitOfWork)
+        public SkillSevice(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<List<Company>> GetCompanyListAsync()
+        public async Task<string> AddSkillAsync(Skill skill)
         {
-            var companies = await unitOfWork.Companies.GetAllAsync();
-            return companies.ToList(); 
-                
+           await unitOfWork.Skills.AddAsync(skill);
+            await unitOfWork.SaveChangesAsync();
+            return "Added";
         }
     }
 }

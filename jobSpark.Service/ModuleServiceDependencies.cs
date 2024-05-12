@@ -12,9 +12,8 @@ namespace jobSpark.Service
             services.AddTransient<IVacancyService, VacancyService>();
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
-
-
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ISkillSevice,SkillSevice>();
 
 
 

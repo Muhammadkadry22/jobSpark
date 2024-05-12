@@ -14,6 +14,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
         ICategoryRepository Categories { get; }
 
         ICompanyRepository Companies { get; }
+        ISkillRepository Skills { get; }
 
         Task SaveChangesAsync();
     }
