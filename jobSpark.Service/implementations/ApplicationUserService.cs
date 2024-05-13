@@ -5,6 +5,7 @@ using jobSpark.Domain.Results;
 using jobSpark.Infrastructure.Context;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -22,16 +23,22 @@ namespace jobSpark.Service.implementations
       
         private readonly JwtSettings _jwtSettings;
         public readonly IUnitOfWork unitOfWork;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
 
 
         public ApplicationUserService(
             JwtSettings jwtSettings ,
-            IUnitOfWork unitOfWork
+            IUnitOfWork unitOfWork,
+            IHttpContextAccessor httpContextAccessor
             )
         {
 
             _jwtSettings = jwtSettings;
+            _httpContextAccessor = httpContextAccessor;
             this.unitOfWork = unitOfWork;
+
+            
 
 
         }
@@ -133,7 +140,7 @@ namespace jobSpark.Service.implementations
             {
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.Email,user.Email),
-                new Claim(nameof(UserClaimModel.Id), user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
             foreach (var role in roles)
             {
@@ -144,6 +151,28 @@ namespace jobSpark.Service.implementations
             return claims;
         }
 
-      
+        public async Task<string> getUserIdAsync()
+        {
+            var httpContext = _httpContextAccessor.HttpContext;
+
+            // Retrieve the user's claims from the HttpContext
+            var userClaims = httpContext.User.Claims;
+
+            // Find the claim representing the user's ID (typically named "sub")
+            var userIdClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+            {
+                // User ID claim not found
+                return null;
+            }
+
+            // Extract the user ID from the claim
+            var userId = userIdClaim.Value;
+
+            return userId;
+
+
+        }
     }
 }

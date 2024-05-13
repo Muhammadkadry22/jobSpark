@@ -129,5 +129,7 @@ namespace jobSpark.Infrastructure.InfrastructureBases
 
             return await query.ToListAsync();
         }
+
+      
     }
 }

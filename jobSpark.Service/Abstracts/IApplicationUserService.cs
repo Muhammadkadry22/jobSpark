@@ -12,6 +12,6 @@ namespace jobSpark.Service.Abstracts
     {
         public Task<string> AddUserAsync(User user, string password , string Role );
         public Task<JwtAuthResult> GetJWTToken(User user);
-
+        public Task<string> getUserIdAsync();
     }
 }
