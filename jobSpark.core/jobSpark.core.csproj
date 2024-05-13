@@ -27,7 +27,6 @@
     <Folder Include="Features\achievement\queries\Handler\" />
     <Folder Include="Features\achievement\queries\Model\" />
     <Folder Include="Features\achievement\queries\Dtos\" />
-    <Folder Include="Features\ApplicationUser\Commands\" />
     <Folder Include="Features\ApplicationUser\Queries\Results\" />
     <Folder Include="Features\Authentication\" />
     <Folder Include="Features\Autherization\" />

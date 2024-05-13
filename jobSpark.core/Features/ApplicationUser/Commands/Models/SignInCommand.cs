@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jobSpark.core.Features.ApplicationUser.Queries.Models
+namespace jobSpark.core.Features.ApplicationUser.Commands.Models
 {
     public class SignInCommand : IRequest<Response<JwtAuthResult>>
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 }

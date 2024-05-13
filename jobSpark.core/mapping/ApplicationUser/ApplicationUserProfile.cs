@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using jobSpark.core.Features.ApplicationUser.Commands.Models;
 using jobSpark.core.Features.ApplicationUser.Queries.Models;
 using jobSpark.Domain.Entities;
 using System;
@@ -13,7 +14,10 @@ namespace jobSpark.core.mapping.ApplicationUser
     {
         public ApplicationUserProfile() {
 
-            CreateMap<AddUserCommand, User>();
+            CreateMap<AddApplicantCommand, User>();
+            CreateMap<AddApplicantCommand, Applicant>();
+            CreateMap<AddCompanyCommand, User>();
+            CreateMap<AddCompanyCommand, Company>();
         }
 
     }
