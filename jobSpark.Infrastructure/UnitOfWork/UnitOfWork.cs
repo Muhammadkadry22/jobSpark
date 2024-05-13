@@ -1,6 +1,8 @@
-﻿using jobSpark.Infrastructure.Abstractions;
+﻿using jobSpark.Domain.Entities;
+using jobSpark.Infrastructure.Abstractions;
 using jobSpark.Infrastructure.Context;
 using jobSpark.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +13,30 @@ namespace jobSpark.Infrastructure.UnitOfWork
 {
     public class unitOfWork : IUnitOfWork
     {
-        private readonly ApplicationDbContext _context;
+        public ApplicationDbContext _context { get; set; }
 
         public IVacancyRepository Vacancies { get; private set; }
 
          public ICategoryRepository Categories { get; private set; }
 
-        public ICompanyRepository Companies { get; }
+        public ICompanyRepository Companies { get; private set; }
 
 
-        public unitOfWork(ApplicationDbContext context)
+        public ISkillRepository Skills { get; private set; }
+
+        public IWorkingHistoryRepository WorkingHistories { get; private set; }
+
+        public IApplicantRepository applicants { get; }
+
+
+       public UserManager<User> _userManager { get; }
+
+       public RoleManager<IdentityRole> _roleManager { get; }
+
+        public unitOfWork(
+            ApplicationDbContext context,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             Vacancies = new VacancyRepository(_context);
@@ -28,6 +44,15 @@ namespace jobSpark.Infrastructure.UnitOfWork
             Categories=new CategoryRepository(_context);
 
             Companies = new CompanyRepository(_context);
+
+            Skills = new SkillRepository(_context);
+            WorkingHistories = new WorkingHistoryRepository(_context);
+
+            applicants = new ApplicantRepository(_context);
+
+            _userManager = userManager;
+            _roleManager = roleManager;
+
 
         }
 

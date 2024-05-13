@@ -10,6 +10,6 @@ namespace jobSpark.Infrastructure.Abstractions
 {
     public interface ICompanyRepository : IGenericRepository<Company>
     {
-        public Task<List<Company>> GetCompaniesAsync();
+      
     }
 }

@@ -1,6 +1,8 @@
 ﻿using jobSpark.Api.Base;
 using jobSpark.core.Features.vacancy.commands.Model;
 using jobSpark.core.Features.vacancy.queries.Model;
+using jobSpark.core.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,11 @@ namespace jobSpark.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class VacancyController : AppControllerBase
     {
         [HttpGet]
+        [Authorize(Roles = "Company")]
         public async Task<IActionResult> GetVacancyList()
         {
             var response = await Mediator.Send(new GetVacancyListQuery());
@@ -19,6 +23,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet("{id}")]
+        [Authorize(Roles ="Applicant")]
         public async Task<IActionResult> GetVacancyById(int id)
         {
             var response = await Mediator.Send(new GetVacancyByIdQuery { Id = id });
@@ -34,6 +39,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles =SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> Create([FromBody] AddVacancyCommand command)
         {
             var response = await Mediator.Send(command);

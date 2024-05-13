@@ -18,6 +18,9 @@ namespace jobSpark.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -221,10 +224,15 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Website")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Applicants");
                 });
@@ -328,10 +336,15 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Property<int?>("Size")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Website")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Companies");
                 });
@@ -402,10 +415,6 @@ namespace jobSpark.Infrastructure.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -596,6 +605,15 @@ namespace jobSpark.Infrastructure.Migrations
                     b.Navigation("WorkingHistories");
                 });
 
+            modelBuilder.Entity("jobSpark.Domain.Entities.Applicant", b =>
+                {
+                    b.HasOne("jobSpark.Domain.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("jobSpark.Domain.Entities.ApplicantVacancy", b =>
                 {
                     b.HasOne("jobSpark.Domain.Entities.Applicant", "Applicant")
@@ -622,6 +640,15 @@ namespace jobSpark.Infrastructure.Migrations
                         .HasForeignKey("ApplicantId");
 
                     b.Navigation("Applicant");
+                });
+
+            modelBuilder.Entity("jobSpark.Domain.Entities.Company", b =>
+                {
+                    b.HasOne("jobSpark.Domain.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("jobSpark.Domain.Entities.Project", b =>

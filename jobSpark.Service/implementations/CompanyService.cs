@@ -17,9 +17,14 @@ namespace jobSpark.Service.implementations
         {
             this.unitOfWork = unitOfWork;
         }
+
+        public async Task<int> GetCompanyByUserId(string userId)
+        {
+           return  unitOfWork.Companies.FindAsync(u=>u.UserId == userId).Result.Id;
+        }
+
         public async Task<List<Company>> GetCompanyListAsync()
         {
-            //return await unitOfWork.Companies.GetCompaniesAsync();
             var companies = await unitOfWork.Companies.GetAllAsync();
             return companies.ToList(); 
                 

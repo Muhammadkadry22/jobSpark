@@ -12,7 +12,8 @@
        public static class ApplicationUserRouting
         {
             public const string Prefix = Rule + "User";
-            public const string Create = Prefix + "/Create";
+            public const string Create = Prefix + "/CreateApplicant";
+            public const string CreateCompany = Prefix + "/CreateCompany";
             public const string Paginated = Prefix + "/Paginated";
             public const string GetByID = Prefix + SignleRoute;
             public const string Edit = Prefix + "/Edit";

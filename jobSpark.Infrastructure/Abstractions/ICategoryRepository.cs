@@ -10,6 +10,6 @@ namespace jobSpark.Infrastructure.Abstractions
 {
     public interface ICategoryRepository : IGenericRepository<Category>
     {
-       // public Task<Category> GetAllAsync();
+       
     }
 }

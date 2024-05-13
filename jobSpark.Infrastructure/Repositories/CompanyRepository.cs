@@ -19,9 +19,9 @@ namespace jobSpark.Infrastructure.Repositories
             _companies = context.Set<Company>();
         }
 
-        public async Task<List<Company>> GetCompaniesAsync()
-        {
-            return await _companies.ToListAsync();
-        }
+        //public async Task<List<Company>> GetCompaniesAsync()
+        //{
+        //    return await _companies.ToListAsync();
+        //}
     }
 }

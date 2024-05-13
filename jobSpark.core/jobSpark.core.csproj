@@ -27,7 +27,6 @@
     <Folder Include="Features\achievement\queries\Handler\" />
     <Folder Include="Features\achievement\queries\Model\" />
     <Folder Include="Features\achievement\queries\Dtos\" />
-    <Folder Include="Features\ApplicationUser\Commands\" />
     <Folder Include="Features\ApplicationUser\Queries\Results\" />
     <Folder Include="Features\Authentication\" />
     <Folder Include="Features\Autherization\" />
@@ -40,10 +39,10 @@
     <Folder Include="Features\certification\" />
     <Folder Include="Features\Company\Commands\Models\" />
     <Folder Include="Features\Company\Commands\Validator\" />
+    <Folder Include="Features\skills\queries\" />
     <Folder Include="Features\vacancy\commands\Validator\" />
-    <Folder Include="Features\workingHistory\" />
     <Folder Include="Features\project\" />
-    <Folder Include="Features\skills\" />
+    <Folder Include="Features\workingHistory\queries\" />
   </ItemGroup>
 
 </Project>
