@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\achievement\commands\Handler\" />
-    <Folder Include="Features\achievement\commands\Model\" />
     <Folder Include="Features\achievement\commands\Validator\" />
     <Folder Include="Features\achievement\queries\Dtos\" />
     <Folder Include="Features\achievement\queries\Handler\" />

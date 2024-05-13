@@ -24,7 +24,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
         ISkillRepository Skills { get; }
         IWorkingHistoryRepository WorkingHistories { get; }
         IProjectRepository Projects { get; }
-
+        IAchievementRepository Achievements { get; }
         IApplicantRepository applicants { get; }
 
         public UserManager<User> _userManager { get; }
