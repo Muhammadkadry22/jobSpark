@@ -33,6 +33,8 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
        public RoleManager<IdentityRole> _roleManager { get; }
 
+        public IProjectRepository Projects { get; private set; }
+
         public unitOfWork(
             ApplicationDbContext context,
             UserManager<User> userManager,
@@ -52,7 +54,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
             _userManager = userManager;
             _roleManager = roleManager;
-
+            Projects= new ProjectRepository(_context);
 
         }
 

@@ -23,7 +23,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
         ISkillRepository Skills { get; }
         IWorkingHistoryRepository WorkingHistories { get; }
-
+        IProjectRepository Projects { get; }
 
         IApplicantRepository applicants { get; }
 
