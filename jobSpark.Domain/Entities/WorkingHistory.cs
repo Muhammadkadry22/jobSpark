@@ -22,6 +22,6 @@ namespace jobSpark.Domain.Entities
 
         [ForeignKey("ApplicantId")]
         public virtual Applicant? Applicant { get; set; }
-        public virtual ICollection<Achievement> Achievements { get; set;}=new HashSet<Achievement>();
+        public virtual ICollection<Achievement> Achievements { get; set;}
     }
 }

@@ -19,9 +19,15 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
          public ICategoryRepository Categories { get; private set; }
 
-        public ICompanyRepository Companies { get; }
+        public ICompanyRepository Companies { get; private set; }
+
+
+        public ISkillRepository Skills { get; private set; }
+
+        public IWorkingHistoryRepository WorkingHistories { get; private set; }
 
         public IApplicantRepository applicants { get; }
+
 
        public UserManager<User> _userManager { get; }
 
@@ -38,10 +44,15 @@ namespace jobSpark.Infrastructure.UnitOfWork
             Categories=new CategoryRepository(_context);
 
             Companies = new CompanyRepository(_context);
+
+            Skills = new SkillRepository(_context);
+            WorkingHistories = new WorkingHistoryRepository(_context);
+
             applicants = new ApplicantRepository(_context);
 
             _userManager = userManager;
             _roleManager = roleManager;
+
 
         }
 

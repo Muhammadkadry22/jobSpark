@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Service.implementations
 {
-    public class CompanyService : ICompanyService
+    public class WorkingHistoryService : IWorkingHistoryService
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public CompanyService(IUnitOfWork unitOfWork)
+        public WorkingHistoryService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<List<Company>> GetCompanyListAsync()
+
+        public async Task<string> AddWorkingHistoryAsync(WorkingHistory workingHistory)
         {
-            var companies = await unitOfWork.Companies.GetAllAsync();
-            return companies.ToList(); 
-                
+           await unitOfWork.WorkingHistories.AddAsync(workingHistory);
+            await unitOfWork.SaveChangesAsync();
+            return "added";
+
         }
     }
 }

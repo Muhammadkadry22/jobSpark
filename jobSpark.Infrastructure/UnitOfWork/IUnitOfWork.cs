@@ -21,10 +21,15 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
         ICompanyRepository Companies { get; }
 
+        ISkillRepository Skills { get; }
+        IWorkingHistoryRepository WorkingHistories { get; }
+
+
         IApplicantRepository applicants { get; }
 
         public UserManager<User> _userManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
+
 
         Task SaveChangesAsync();
     }

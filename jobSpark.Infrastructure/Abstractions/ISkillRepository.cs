@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Infrastructure.Abstractions
 {
-    public interface ICompanyRepository : IGenericRepository<Company>
+    public interface ISkillRepository:IGenericRepository<Skill>
     {
-      
     }
 }

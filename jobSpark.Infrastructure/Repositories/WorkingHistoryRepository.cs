@@ -11,17 +11,13 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Infrastructure.Repositories
 {
-    public class CompanyRepository : GenericRepository<Company>,ICompanyRepository
+    public class WorkingHistoryRepository:GenericRepository<WorkingHistory>,IWorkingHistoryRepository
     {
-        private readonly DbSet<Company> _companies;
-        public CompanyRepository(ApplicationDbContext context) : base(context)
-        {
-            _companies = context.Set<Company>();
-        }
+        private readonly DbSet<WorkingHistory> _workingHistory;
 
-        //public async Task<List<Company>> GetCompaniesAsync()
-        //{
-        //    return await _companies.ToListAsync();
-        //}
+        public WorkingHistoryRepository(ApplicationDbContext context) : base(context)
+        {
+            _workingHistory = context.Set<WorkingHistory>();
+        }
     }
 }
