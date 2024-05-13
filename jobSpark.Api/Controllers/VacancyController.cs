@@ -1,6 +1,7 @@
 ﻿using jobSpark.Api.Base;
 using jobSpark.core.Features.vacancy.commands.Model;
 using jobSpark.core.Features.vacancy.queries.Model;
+using jobSpark.core.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles =SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> Create([FromBody] AddVacancyCommand command)
         {
             var response = await Mediator.Send(command);

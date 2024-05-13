@@ -36,5 +36,12 @@ namespace jobSpark.core.Resources
         public const string PasswordNotCorrect = "PasswordNotCorrect";
         public const string TryToRegisterAgain = "TryToRegisterAgain";
 
+
+
+        //Roles
+
+        public const string COMPANYROLE = "Company"; 
+        public const string APPLICANTROLE = "Applicant"; 
+
     }
 }
