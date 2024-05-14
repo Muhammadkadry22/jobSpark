@@ -4,8 +4,6 @@ using jobSpark.core.Features.vacancy.commands.Model;
 using jobSpark.Domain.Entities;
 using jobSpark.Service.Abstracts;
 using MediatR;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.vacancy.commands.Handler
 {
@@ -20,9 +18,9 @@ namespace jobSpark.core.Features.vacancy.commands.Handler
         private readonly IApplicantUserService applicantUserService;
         private readonly IApplicantVacancyService applicantVacancyService;
 
-        public VacancyCommandHandler(IMapper mapper, 
-            IVacancyService vacancyService , 
-            IApplicationUserService appUserService ,
+        public VacancyCommandHandler(IMapper mapper,
+            IVacancyService vacancyService,
+            IApplicationUserService appUserService,
             ICompanyService companyService,
             IApplicantUserService applicantUserService,
             IApplicantVacancyService applicantVacancyService
@@ -50,13 +48,13 @@ namespace jobSpark.core.Features.vacancy.commands.Handler
 
         public async Task<Response<string>> Handle(ApplyToVacancyCommand request, CancellationToken cancellationToken)
         {
-            var appvacancyMapper = mapper.Map<ApplicantVacancy>(request);
+            var appvacancyMapper = mapper.Map<jobSpark.Domain.Entities.ApplicantVacancy>(request);
             var userId = await appUserService.getUserIdAsync();
             appvacancyMapper.ApplicantId = await applicantUserService.GetApplicantIdByUserId(userId);
             var result = await applicantVacancyService.AddAppVacancyAsync(appvacancyMapper);
-            if(result == "Added")
+            if (result == "Added")
                 return Created("");
-            else  return BadRequest<string>();
+            else return BadRequest<string>();
         }
     }
 }

@@ -3,11 +3,7 @@ using jobSpark.Infrastructure.Abstractions;
 using jobSpark.Infrastructure.Context;
 using jobSpark.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace jobSpark.Infrastructure.UnitOfWork
 {
@@ -17,7 +13,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
         public IVacancyRepository Vacancies { get; private set; }
 
-         public ICategoryRepository Categories { get; private set; }
+        public ICategoryRepository Categories { get; private set; }
 
         public ICompanyRepository Companies { get; private set; }
 
@@ -32,11 +28,11 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
         public UserManager<User> _userManager { get; }
 
-       public RoleManager<IdentityRole> _roleManager { get; }
+        public RoleManager<IdentityRole> _roleManager { get; }
 
         public IProjectRepository Projects { get; private set; }
 
-        public IAchievementRepository Achievements {  get; private set; }
+        public IAchievementRepository Achievements { get; private set; }
 
         public unitOfWork(
             ApplicationDbContext context,
@@ -46,7 +42,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
             _context = context;
             Vacancies = new VacancyRepository(_context);
 
-            Categories=new CategoryRepository(_context);
+            Categories = new CategoryRepository(_context);
 
             Companies = new CompanyRepository(_context);
 
@@ -59,7 +55,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
             _userManager = userManager;
             _roleManager = roleManager;
 
-            Projects = new ProjectRepository(_context);   
+            Projects = new ProjectRepository(_context);
             Achievements = new AchievementRepository(_context);
 
 
@@ -67,7 +63,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
             _userManager = userManager;
             _roleManager = roleManager;
-       
+
         }
 
         public async Task SaveChangesAsync()
@@ -80,8 +76,8 @@ namespace jobSpark.Infrastructure.UnitOfWork
             _context.Dispose();
         }
     }
-       
-        
+
+
 
 }
 
