@@ -5,16 +5,9 @@ using jobSpark.core.Features.ApplicationUser.Queries.Models;
 using jobSpark.core.Resources;
 using jobSpark.Domain.Entities;
 using jobSpark.Domain.Results;
-using jobSpark.Infrastructure.Abstractions;
 using jobSpark.Service.Abstracts;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.ApplicationUser.Commands.Handlers
 {
@@ -48,9 +41,9 @@ namespace jobSpark.core.Features.ApplicationUser.Commands.Handlers
         public async Task<Response<string>> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
         {
             var identityUser = _mapper.Map<User>(request);
-            var applicant = _mapper.Map<Applicant>(request);
+            var applicant = _mapper.Map<jobSpark.Domain.Entities.Applicant>(request);
             //Create
-            var createResult = await _applicationUserService.AddUserAsync(identityUser, request.Password, request.Role);
+            var createResult = await _applicationUserService.AddUserAsync(identityUser, request.Password, SharedResourcesKeys.APPLICANTROLE);
             await _applicantUserService.AddApplicant(applicant);
 
             return getResponse(createResult);
@@ -79,7 +72,7 @@ namespace jobSpark.core.Features.ApplicationUser.Commands.Handlers
             var identityUser = _mapper.Map<User>(request);
             var company = _mapper.Map<Domain.Entities.Company>(request);
 
-            var createResult = await _applicationUserService.AddUserAsync(identityUser, request.Password, request.Role);
+            var createResult = await _applicationUserService.AddUserAsync(identityUser, request.Password, SharedResourcesKeys.COMPANYROLE);
             await companyUserService.AddCompany(company);
 
             return getResponse(createResult);

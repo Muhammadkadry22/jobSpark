@@ -1,26 +1,20 @@
-﻿using Azure.Core;
-using jobSpark.Domain.Entities;
+﻿using jobSpark.Domain.Entities;
 using jobSpark.Domain.Helpers;
 using jobSpark.Domain.Results;
-using jobSpark.Infrastructure.Context;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.Service.implementations
 {
     internal class ApplicationUserService : IApplicationUserService
     {
-      
+
         private readonly JwtSettings _jwtSettings;
         public readonly IUnitOfWork unitOfWork;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -28,7 +22,7 @@ namespace jobSpark.Service.implementations
 
 
         public ApplicationUserService(
-            JwtSettings jwtSettings ,
+            JwtSettings jwtSettings,
             IUnitOfWork unitOfWork,
             IHttpContextAccessor httpContextAccessor
             )
@@ -38,12 +32,9 @@ namespace jobSpark.Service.implementations
             _httpContextAccessor = httpContextAccessor;
             this.unitOfWork = unitOfWork;
 
-            
-
-
         }
 
-        public async Task<string> AddUserAsync(User user, string password , string role )
+        public async Task<string> AddUserAsync(User user, string password, string role)
         {
             var trans = await unitOfWork._context.Database.BeginTransactionAsync();
             try
@@ -56,7 +47,7 @@ namespace jobSpark.Service.implementations
                 //if username is Exist
                 var userByUserName = await unitOfWork._userManager.FindByNameAsync(user.UserName);
                 //username is Exist
-               if (userByUserName != null) return "UserNameIsExist";
+                if (userByUserName != null) return "UserNameIsExist";
                 //Create
                 var createResult = await unitOfWork._userManager.CreateAsync(user, password);
                 //Failed
@@ -65,7 +56,7 @@ namespace jobSpark.Service.implementations
 
 
                 //assign User To Role
-                await assignUserRole(role , user);
+                await assignUserRole(role, user);
 
                 await trans.CommitAsync();
                 return "Success";
@@ -77,9 +68,9 @@ namespace jobSpark.Service.implementations
             }
         }
 
-        
 
-        private async Task assignUserRole(string role , User user)
+
+        private async Task assignUserRole(string role, User user)
         {
             IdentityRole? applicantRole = new IdentityRole("Applicant");
             IdentityRole? companyRole = new IdentityRole("Company");
@@ -88,20 +79,20 @@ namespace jobSpark.Service.implementations
                 if (!await unitOfWork._roleManager.RoleExistsAsync("Applicant"))
                 {
                     // Create the role
-                   // applicantRole = new IdentityRole("Applicant");
+                    // applicantRole = new IdentityRole("Applicant");
                     await unitOfWork._roleManager.CreateAsync(applicantRole);
                 }
-                    await unitOfWork._userManager.AddToRoleAsync(user, applicantRole.Name);
+                await unitOfWork._userManager.AddToRoleAsync(user, applicantRole.Name);
             }
-            else if(role == "Company")
+            else if (role == "Company")
             {
                 if (!await unitOfWork._roleManager.RoleExistsAsync("Company"))
                 {
                     // Create the role
-                   // companyRole = new IdentityRole("Company");
-                    await  unitOfWork._roleManager.CreateAsync(companyRole);
+                    // companyRole = new IdentityRole("Company");
+                    await unitOfWork._roleManager.CreateAsync(companyRole);
                 }
-               await unitOfWork._userManager.AddToRoleAsync(user, companyRole.Name);
+                await unitOfWork._userManager.AddToRoleAsync(user, companyRole.Name);
             }
 
         }
@@ -169,10 +160,7 @@ namespace jobSpark.Service.implementations
 
             // Extract the user ID from the claim
             var userId = userIdClaim.Value;
-
             return userId;
-
-
         }
     }
 }
