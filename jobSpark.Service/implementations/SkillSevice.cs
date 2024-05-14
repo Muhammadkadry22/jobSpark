@@ -22,5 +22,14 @@ namespace jobSpark.Service.implementations
             await unitOfWork.SaveChangesAsync();
             return "Added";
         }
+
+        public async Task<bool> SkillExistsForApplicant(string name , int applicantId)
+        {
+            var result= await unitOfWork.Skills.FindAsync(s => s.Name == name && s.ApplicantId == applicantId);
+            if(result == null) return false;
+            else return true;
+        }
+            
+        
     }
 }

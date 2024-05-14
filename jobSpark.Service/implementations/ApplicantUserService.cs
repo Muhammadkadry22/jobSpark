@@ -24,5 +24,10 @@ namespace jobSpark.Service.implementations
             await unitOfWork.SaveChangesAsync();
             return "Added";
         }
+
+        public async Task<int> GetApplicantIdByUserId(string userId)
+        {
+            return unitOfWork.applicants.FindAsync(u => u.UserId == userId).Result.Id;
+        }
     }
 }

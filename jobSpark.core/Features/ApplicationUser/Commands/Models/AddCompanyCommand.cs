@@ -14,7 +14,7 @@ namespace jobSpark.core.Features.ApplicationUser.Queries.Models
         public string Password { get; set; }
         public string UserName { get; set; }
         public string Name { get; set; }
-        public string Role { get; set; }
+        public string? Role { get; set; }
         public string? Industry { get; set; }
         public string? Brief { get; set; }
         public int? LaunchYear { get; set; }

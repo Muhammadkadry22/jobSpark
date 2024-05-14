@@ -10,5 +10,6 @@ namespace jobSpark.Service.Abstracts
     public interface ISkillSevice
     {
         public Task<string> AddSkillAsync(Skill skill);
+        Task<bool> SkillExistsForApplicant(string name, int applicantId);
     }
 }

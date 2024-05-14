@@ -11,6 +11,6 @@ namespace jobSpark.core.Features.skills.commands.Model
     public class AddSkillCommand:IRequest<Response<string>>
     {
         public string? Name { get; set; }
-        public int? ApplicantId { get; set; }
+        //public int? ApplicantId { get; set; }
     }
 }
