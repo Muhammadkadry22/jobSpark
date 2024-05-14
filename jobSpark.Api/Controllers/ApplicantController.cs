@@ -15,8 +15,7 @@ namespace jobSpark.Api.Controllers
 
             if (!response.Succeeded)
             {
-                // Handle the case where the vacancy with the specified ID was not found
-                return NotFound(response); // Returning a NotFound result with the response object
+                return NotFound(response);
             }
 
             return NewResult(response);
