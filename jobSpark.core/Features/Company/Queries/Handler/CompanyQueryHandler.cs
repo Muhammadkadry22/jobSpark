@@ -1,22 +1,15 @@
 ﻿using AutoMapper;
-using Azure;
 using jobSpark.core.Bases;
 using jobSpark.core.Features.Company.Queries.Dtos;
 using jobSpark.core.Features.Company.Queries.Model;
-using jobSpark.core.Features.vacancy.queries.Dtos;
 using jobSpark.Service.Abstracts;
-using jobSpark.Service.implementations;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.Company.Queries.Handler
 {
     public class CompanyQueryHandler : ResponseHandler,
-                                       IRequestHandler<GetCompanytListQuery, Bases.Response<List<GetCompanyListDto>>>
+                                       IRequestHandler<GetCompanytListQuery, Bases.Response<List<GetCompanyListDto>>>,
+                                       IRequestHandler<GetCompanyByIdQuery, Response<GetComapanyByIdDTO>>
     {
         private readonly ICompanyService companyService;
         private readonly IMapper mapper;
@@ -33,6 +26,15 @@ namespace jobSpark.core.Features.Company.Queries.Handler
             var CompanyList = await companyService.GetCompanyListAsync();
             var CompanyMapper = mapper.Map<List<GetCompanyListDto>>(CompanyList);
             var result = Success(CompanyMapper);
+            return result;
+        }
+
+        public async Task<Response<GetComapanyByIdDTO>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
+        {
+            var company = await companyService.GetCompanyByIdAsync(request.Id);
+            if (company == null) return NotFound<GetComapanyByIdDTO>();
+            var companyMapper = mapper.Map<GetComapanyByIdDTO>(company);
+            var result = Success(companyMapper);
             return result;
         }
     }

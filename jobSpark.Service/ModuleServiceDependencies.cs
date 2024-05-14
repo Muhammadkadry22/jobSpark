@@ -14,12 +14,13 @@ namespace jobSpark.Service
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
 
             services.AddTransient<IApplicantUserService, ApplicantUserService>();
+            services.AddTransient<IApplicantService, ApplicantService>();
             services.AddTransient<ICompanyUserService, CompanyUserService>();
 
 
 
             services.AddTransient<ICategoryService, CategoryService>();
-            services.AddTransient<ISkillSevice,SkillSevice>();
+            services.AddTransient<ISkillSevice, SkillSevice>();
             services.AddTransient<IWorkingHistoryService, WorkingHistoryService>();
 
 
