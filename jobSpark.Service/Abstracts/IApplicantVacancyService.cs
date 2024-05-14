@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Service.Abstracts
 {
-    public interface IApplicantUserService
+    public interface IApplicantVacancyService
     {
-        public Task<string> AddApplicant(Applicant applicant);
-        public Task<int> GetApplicantIdByUserId(string userId);
-
+        Task<string> AddAppVacancyAsync(ApplicantVacancy appvacancyMapper);
     }
 }

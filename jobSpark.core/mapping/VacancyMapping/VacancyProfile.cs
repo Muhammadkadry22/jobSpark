@@ -30,6 +30,9 @@ namespace jobSpark.core.mapping.VacancyMapping
 
             CreateMap<AddVacancyCommand, Vacancy>();
 
+            CreateMap<ApplyToVacancyCommand, ApplicantVacancy>();
+                
+
         }
     }
 }

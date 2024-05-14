@@ -45,5 +45,12 @@ namespace jobSpark.Api.Controllers
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+
+        [HttpPost("/apply")]
+        [Authorize(Roles =SharedResourcesKeys.APPLICANTROLE)]
+        public async Task<IActionResult> Apply([FromBody] ApplyToVacancyCommand command)
+        {
+            return NewResult(await Mediator.Send(command));
+        }
     }
 }

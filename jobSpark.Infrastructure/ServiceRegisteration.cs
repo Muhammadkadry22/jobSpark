@@ -54,7 +54,7 @@ namespace jobSpark.Infrastructure
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "School Project", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "JobSpark Project", Version = "v1" });
                 c.EnableAnnotations();
 
                 c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
