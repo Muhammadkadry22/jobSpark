@@ -34,6 +34,10 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
        public RoleManager<IdentityRole> _roleManager { get; }
 
+        public IProjectRepository Projects { get; private set; }
+
+        public IAchievementRepository Achievements {  get; private set; }
+
         public unitOfWork(
             ApplicationDbContext context,
             UserManager<User> userManager,
@@ -50,11 +54,20 @@ namespace jobSpark.Infrastructure.UnitOfWork
             WorkingHistories = new WorkingHistoryRepository(_context);
 
             applicants = new ApplicantRepository(_context);
+
             ApplicantVacancies = new ApplicantVacancyRepository(_context);
             _userManager = userManager;
             _roleManager = roleManager;
 
+            Projects = new ProjectRepository(_context);   
+            Achievements = new AchievementRepository(_context);
 
+
+
+
+            _userManager = userManager;
+            _roleManager = roleManager;
+       
         }
 
         public async Task SaveChangesAsync()

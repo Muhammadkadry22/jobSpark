@@ -26,7 +26,17 @@ namespace jobSpark.Infrastructure
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ISkillRepository, SkillRepository>();
             services.AddTransient<IWorkingHistoryRepository, WorkingHistoryRepository>();   
+
             services.AddTransient<IApplicantVacancyRepository, ApplicantVacancyRepository>();
+
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IAchievementRepository, AchievementRepository>();
+
+
+
+
+
+
             services.AddTransient<IUnitOfWork, unitOfWork>();
 
         
