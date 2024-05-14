@@ -26,10 +26,11 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
 
         IApplicantRepository applicants { get; }
-
+       
+        IApplicantVacancyRepository  ApplicantVacancies { get; }
         public UserManager<User> _userManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
-
+        
 
         Task SaveChangesAsync();
     }

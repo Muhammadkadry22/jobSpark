@@ -22,6 +22,8 @@ namespace jobSpark.Service
             services.AddTransient<ISkillSevice,SkillSevice>();
             services.AddTransient<IWorkingHistoryService, WorkingHistoryService>();
 
+            services.AddTransient<IApplicantVacancyService,ApplicantVacancyService>();
+
 
 
             return services;

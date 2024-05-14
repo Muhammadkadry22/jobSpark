@@ -28,8 +28,9 @@ namespace jobSpark.Infrastructure.UnitOfWork
 
         public IApplicantRepository applicants { get; }
 
+        public IApplicantVacancyRepository ApplicantVacancies { get; }
 
-       public UserManager<User> _userManager { get; }
+        public UserManager<User> _userManager { get; }
 
        public RoleManager<IdentityRole> _roleManager { get; }
 
@@ -49,7 +50,7 @@ namespace jobSpark.Infrastructure.UnitOfWork
             WorkingHistories = new WorkingHistoryRepository(_context);
 
             applicants = new ApplicantRepository(_context);
-
+            ApplicantVacancies = new ApplicantVacancyRepository(_context);
             _userManager = userManager;
             _roleManager = roleManager;
 
