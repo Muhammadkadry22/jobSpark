@@ -1,11 +1,6 @@
 ﻿using jobSpark.Domain.Entities;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.Service.implementations
 {
@@ -18,16 +13,21 @@ namespace jobSpark.Service.implementations
             this.unitOfWork = unitOfWork;
         }
 
+        public async Task<Company> GetCompanyByIdAsync(int id)
+        {
+            return await unitOfWork.Companies.GetByIdAsync(id);
+        }
+
         public async Task<int> GetCompanyByUserId(string userId)
         {
-           return  unitOfWork.Companies.FindAsync(u=>u.UserId == userId).Result.Id;
+            return unitOfWork.Companies.FindAsync(u => u.UserId == userId).Result.Id;
         }
 
         public async Task<List<Company>> GetCompanyListAsync()
         {
             var companies = await unitOfWork.Companies.GetAllAsync();
-            return companies.ToList(); 
-                
+            return companies.ToList();
+
         }
     }
 }

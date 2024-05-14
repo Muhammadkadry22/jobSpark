@@ -1,6 +1,5 @@
 ﻿using jobSpark.Api.Base;
 using jobSpark.core.Features.Company.Queries.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace jobSpark.Api.Controllers
@@ -12,8 +11,17 @@ namespace jobSpark.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCompanyList()
         {
-            var response=await Mediator.Send(new GetCompanytListQuery());
+            var response = await Mediator.Send(new GetCompanytListQuery());
             return NewResult(response);
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCompanyByIdAsync(int id)
+        {
+            var response = await Mediator.Send(new GetCompanyByIdQuery { Id = id });
+            return NewResult(response);
+        }
+
     }
 }
