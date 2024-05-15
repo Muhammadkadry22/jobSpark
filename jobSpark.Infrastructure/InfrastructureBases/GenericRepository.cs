@@ -1,11 +1,6 @@
 ﻿using jobSpark.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.Infrastructure.InfrastructureBases
 {
@@ -28,7 +23,7 @@ namespace jobSpark.Infrastructure.InfrastructureBases
             return await _context.Set<T>().FindAsync(id);
         }
 
-     
+
         public async Task<T> FindAsync(Expression<Func<T, bool>> criteria, string[] includes = null)
         {
             IQueryable<T> query = _context.Set<T>();
@@ -54,7 +49,7 @@ namespace jobSpark.Infrastructure.InfrastructureBases
 
         public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> criteria, int pageNumber, int itemNumber)
         {
-            return await _context.Set<T>().Where(criteria).Skip((pageNumber-1)*itemNumber).Take(itemNumber).ToListAsync();
+            return await _context.Set<T>().Where(criteria).Skip((pageNumber - 1) * itemNumber).Take(itemNumber).ToListAsync();
         }
 
         public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> criteria, int? pageNumber, int? itemNumber,
@@ -63,7 +58,7 @@ namespace jobSpark.Infrastructure.InfrastructureBases
             IQueryable<T> query = _context.Set<T>().Where(criteria);
 
             if (pageNumber.HasValue)
-                query = query.Skip(((pageNumber-1)*itemNumber).Value);
+                query = query.Skip(((pageNumber - 1) * itemNumber).Value);
 
             if (itemNumber.HasValue)
                 query = query.Take(itemNumber.Value);
@@ -130,6 +125,12 @@ namespace jobSpark.Infrastructure.InfrastructureBases
             return await query.ToListAsync();
         }
 
-      
+        public IQueryable<T> GetTableNoTracking()
+        {
+            return _context.Set<T>().AsNoTracking().AsQueryable();
+        }
+
+
+
     }
 }
