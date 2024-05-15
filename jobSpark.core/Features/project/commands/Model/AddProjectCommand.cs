@@ -13,6 +13,6 @@ namespace jobSpark.core.Features.project.commands.Model
         public string? Name { get; set; }
         public string? Link { get; set; }
         public string? Skills { get; set; }
-        public int? ApplicantId { get; set; }
+       // public int? ApplicantId { get; set; }
     }
 }
