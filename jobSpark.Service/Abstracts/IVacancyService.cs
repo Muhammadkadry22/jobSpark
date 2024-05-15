@@ -1,9 +1,4 @@
 ﻿using jobSpark.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.Service.Abstracts
 {
@@ -14,6 +9,10 @@ namespace jobSpark.Service.Abstracts
         public Task<Vacancy> GetVacancyByIdAsync(int id);
 
         public Task<string> AddVacanyAsync(Vacancy vacancy);
+
+        public IQueryable<Vacancy> GetVacanciesQuerable();
+
+        public IQueryable<Vacancy> FilliterVacanciesPaginatedQuerable(string search);
 
 
     }

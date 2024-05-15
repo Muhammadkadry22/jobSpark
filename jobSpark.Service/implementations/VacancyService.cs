@@ -1,23 +1,17 @@
 ﻿using jobSpark.Domain.Entities;
-using jobSpark.Infrastructure.Abstractions;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.Service.implementations
 {
     public class VacancyService : IVacancyService
     {
-       
+
         private readonly IUnitOfWork unitOfWork;
 
         public VacancyService(IUnitOfWork unitOfWork)
         {
-          
+
             this.unitOfWork = unitOfWork;
         }
 
@@ -39,8 +33,21 @@ namespace jobSpark.Service.implementations
 
         }
 
-        
+        public IQueryable<Vacancy> GetVacanciesQuerable()
+        {
+            return unitOfWork.Vacancies.GetTableNoTracking().AsQueryable();
+        }
+
+        public IQueryable<Vacancy> FilliterVacanciesPaginatedQuerable(string search)
+        {
+            var querable = unitOfWork.Vacancies.GetTableNoTracking().AsQueryable();
+            if (search != null)
+            {
+                querable = querable.Where(x => x.Name.Contains(search) || x.Company.Name.Contains(search));
+            }
+            return querable;
+        }
     }
 
 
-  }
+}

@@ -3,16 +3,27 @@ using jobSpark.core.Features.vacancy.commands.Model;
 using jobSpark.core.Features.vacancy.queries.Model;
 using jobSpark.core.Resources;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace jobSpark.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class VacancyController : AppControllerBase
     {
+
+
+
+        [HttpGet("/GetVacancyPaginated")]
+        public async Task<IActionResult> GetVacancyPaginated([FromQuery] GetVacancyPaginatedListQuery query)
+        {
+            var response = await Mediator.Send(query);
+            return Ok(response);
+        }
+
+
+
         [HttpGet]
         [Authorize(Roles = "Company")]
         public async Task<IActionResult> GetVacancyList()
@@ -23,7 +34,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet("{id}")]
-        [Authorize(Roles ="Applicant")]
+        [Authorize(Roles = "Applicant")]
         public async Task<IActionResult> GetVacancyById(int id)
         {
             var response = await Mediator.Send(new GetVacancyByIdQuery { Id = id });
@@ -39,7 +50,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles =SharedResourcesKeys.COMPANYROLE)]
+        [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> Create([FromBody] AddVacancyCommand command)
         {
             var response = await Mediator.Send(command);
@@ -47,7 +58,7 @@ namespace jobSpark.Api.Controllers
         }
 
         [HttpPost("/apply")]
-        [Authorize(Roles =SharedResourcesKeys.APPLICANTROLE)]
+        [Authorize(Roles = SharedResourcesKeys.APPLICANTROLE)]
         public async Task<IActionResult> Apply([FromBody] ApplyToVacancyCommand command)
         {
             return NewResult(await Mediator.Send(command));
