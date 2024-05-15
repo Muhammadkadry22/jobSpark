@@ -18,6 +18,8 @@ namespace jobSpark.core.mapping.ApplicationUser
             CreateMap<AddApplicantCommand, Applicant>();
             CreateMap<AddCompanyCommand, User>();
             CreateMap<AddCompanyCommand, Company>();
+            CreateMap<AddCompanyCommand, Project>();
+            CreateMap<AddCompanyCommand, WorkingHistory>();
         }
 
     }
