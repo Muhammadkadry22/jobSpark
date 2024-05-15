@@ -25,7 +25,7 @@ namespace jobSpark.Service
 
 
             services.AddTransient<IApplicantVacancyService,ApplicantVacancyService>();
-
+            services.AddTransient<IFileService, FileService>();
 
 
             services.AddTransient<IProjectService, ProjectService>();

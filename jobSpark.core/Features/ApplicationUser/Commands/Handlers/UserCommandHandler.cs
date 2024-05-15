@@ -44,7 +44,7 @@ namespace jobSpark.core.Features.ApplicationUser.Commands.Handlers
             var applicant = _mapper.Map<jobSpark.Domain.Entities.Applicant>(request);
             //Create
             var createResult = await _applicationUserService.AddUserAsync(identityUser, request.Password, SharedResourcesKeys.APPLICANTROLE);
-            await _applicantUserService.AddApplicant(applicant);
+            await _applicantUserService.AddApplicant(applicant,request.Cv);
 
             return getResponse(createResult);
 
