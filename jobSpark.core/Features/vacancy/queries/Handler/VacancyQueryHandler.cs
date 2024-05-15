@@ -12,26 +12,14 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
 {
     public class VacancyQueryHandler : ResponseHandler,
 
-<<<<<<< HEAD
-                             IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>,
-                             IRequestHandler<GetVacancyByIdQuery, Response<GetVacancyByIdDto>>,
-                             IRequestHandler<GetVacancyPaginatedListQuery, PaginatedResult<GetVacancyPaginatedListResponse>>
-
-=======
                                        IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>, 
-                                         IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>,
-                                        IRequestHandler<GetVacancyApplicantsQuery,Response<List<GetVacancyApplicantsDto>>>
->>>>>>> 3ea0b3b1ebc7872e6271d790368addb1168ab96a
+                                         IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>
     {
         private readonly IMapper mapper;
         private readonly IVacancyService vacancyService;
         private readonly IApplicantVacancyService applicantVacancyService;
 
-<<<<<<< HEAD
-        public VacancyQueryHandler(IMapper mapper, IVacancyService vacancyService)
-=======
-        public VacancyQueryHandler(IMapper mapper , IVacancyService vacancyService,IApplicantVacancyService applicantVacancyService)
->>>>>>> 3ea0b3b1ebc7872e6271d790368addb1168ab96a
+        public VacancyQueryHandler(IMapper mapper , IVacancyService vacancyService)
         {
             this.mapper = mapper;
             this.vacancyService = vacancyService;
@@ -54,25 +42,6 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
             return result;
         }
 
-<<<<<<< HEAD
-        public async Task<PaginatedResult<GetVacancyPaginatedListResponse>> Handle(GetVacancyPaginatedListQuery request, CancellationToken cancellationToken)
-        {
-            Expression<Func<Vacancy, GetVacancyPaginatedListResponse>> expression = e => new GetVacancyPaginatedListResponse(e.Id, e.Name, e.OpenDate, e.State, e.Description, e.ApplicantCount, e.ReviewCount, e.CategoryId, e.Category.Name, e.CompanyId, e.Company.Name);
-            // var querable = vacancyService.GetVacanciesQuerable();
-            var FilterQuery = vacancyService.FilliterVacanciesPaginatedQuerable(request.Search);
-            var paginatedList = await FilterQuery.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
-            return paginatedList;
-        }
 
-
-=======
-        public async Task<Response<List<GetVacancyApplicantsDto>>> Handle(GetVacancyApplicantsQuery request, CancellationToken cancellationToken)
-        {
-            var VacancyApplicantList = await applicantVacancyService.GetVacancyapplicants(request.Id);
-            var vacancyAppMapper = mapper.Map<List<GetVacancyApplicantsDto>>(VacancyApplicantList);
-            var result = Success(vacancyAppMapper);
-            return result;
-        }
->>>>>>> 3ea0b3b1ebc7872e6271d790368addb1168ab96a
     }
 }

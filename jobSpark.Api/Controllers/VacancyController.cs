@@ -34,11 +34,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet("{id}")]
-<<<<<<< HEAD
-        [Authorize(Roles = "Applicant")]
-=======
         [Authorize(Roles =SharedResourcesKeys.APPLICANTROLE)]
->>>>>>> 3ea0b3b1ebc7872e6271d790368addb1168ab96a
         public async Task<IActionResult> GetVacancyById(int id)
         {
             var response = await Mediator.Send(new GetVacancyByIdQuery { Id = id });
