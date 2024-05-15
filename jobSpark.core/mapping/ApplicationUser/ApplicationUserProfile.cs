@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace jobSpark.core.mapping.ApplicationUser
 {
-    public class ApplicationUserProfile : Profile
+    public class ApplicationUserProfile : Profile  
     {
         public ApplicationUserProfile() {
 

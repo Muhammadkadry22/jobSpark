@@ -9,8 +9,9 @@ namespace jobSpark.Api.Controllers
 
     public class ApplicationUserController: AppControllerBase
     {
+     
         [HttpPost(Router.ApplicationUserRouting.Create)]
-        public async Task<IActionResult> Create([FromBody] AddApplicantCommand command)
+        public async Task<IActionResult> Create([FromForm] AddApplicantCommand command)
         {
             var response = await Mediator.Send(command);
             return NewResult(response);

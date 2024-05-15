@@ -20,4 +20,8 @@
     <ProjectReference Include="..\jobSpark.core\jobSpark.core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

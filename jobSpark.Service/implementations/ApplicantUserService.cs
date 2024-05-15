@@ -1,6 +1,7 @@
 ﻿using jobSpark.Domain.Entities;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
+using Microsoft.AspNetCore.Http;
 
 namespace jobSpark.Service.implementations
 {
@@ -8,18 +9,29 @@ namespace jobSpark.Service.implementations
     public class ApplicantUserService : IApplicantUserService
     {
         public readonly IUnitOfWork unitOfWork;
-        public ApplicantUserService(IUnitOfWork unitOfWork)
+        private readonly IFileService fileService;
+        public ApplicantUserService(IUnitOfWork unitOfWork, IFileService fileService)
         {
             this.unitOfWork = unitOfWork;
+            this.fileService = fileService;
         }
 
-        public async Task<string> AddApplicant(Applicant applicant)
+        public async Task<string> AddApplicant(Applicant applicant,IFormFile file)
         {
             var res = unitOfWork._userManager.Users.FirstOrDefault(u=>u.Email == applicant.Email);
-            if (res != null)
+            var fileUrl=await fileService.UploadFile("Applicant",file);
+            switch(fileUrl)
             {
+                case "NoFile":return "NoFile";
+                case "FailedToUploadFile": return "FailedToUploadFile";
+            }
+            applicant.Cv=fileUrl;
+
+            if (res != null)
+            {   
                 applicant.UserId = res.Id;
             }
+           
             await unitOfWork.applicants.AddAsync(applicant);
             await unitOfWork.SaveChangesAsync();
             return "Added";

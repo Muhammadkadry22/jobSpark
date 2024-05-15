@@ -50,6 +50,7 @@ app.UseCors("MyPolicy");
 app.UseRouting();
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseAuthentication();
 
