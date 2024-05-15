@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace jobSpark.Infrastructure.Abstractions
 {
-    public interface IApplicantVacancyRepository : IGenericRepository<ApplicantVacancy>
+    public interface IVacancyApplicantRepository : IGenericRepository<ApplicantVacancy>
     {
-        Task<List<Applicant>> GetApplicantsByVacancyId(int vacancyId);
     }
 }

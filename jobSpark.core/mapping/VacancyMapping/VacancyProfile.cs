@@ -21,17 +21,18 @@ namespace jobSpark.core.mapping.VacancyMapping
         {
             CreateMap<Vacancy, GetVacancyListDto>()
                 .ForMember(des => des.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(des => des.CategoryName, opt => opt.MapFrom(src => src.Company.Name));
+                .ForMember(des => des.CompanyName, opt => opt.MapFrom(src => src.Company.Name));
 
 
             CreateMap<Vacancy,GetVacancyByIdDto>()
                  .ForMember(des => des.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
-                .ForMember(des => des.CategoryName, opt => opt.MapFrom(src => src.Company.Name));
+                .ForMember(des => des.CompanyName, opt => opt.MapFrom(src => src.Company.Name));
 
             CreateMap<AddVacancyCommand, Vacancy>();
 
             CreateMap<ApplyToVacancyCommand, ApplicantVacancy>();
-                
+
+            CreateMap<Applicant, GetVacancyApplicantsDto>();
 
         }
     }

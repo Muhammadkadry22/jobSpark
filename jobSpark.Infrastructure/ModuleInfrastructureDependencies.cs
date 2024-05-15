@@ -31,7 +31,7 @@ namespace jobSpark.Infrastructure
 
             services.AddTransient<IProjectRepository, ProjectRepository>();
             services.AddTransient<IAchievementRepository, AchievementRepository>();
-
+            services.AddTransient<IVacancyApplicantRepository, VacancyApplicantRepository>();
 
 
 
