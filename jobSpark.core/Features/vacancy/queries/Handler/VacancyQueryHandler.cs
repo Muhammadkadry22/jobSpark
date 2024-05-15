@@ -2,14 +2,11 @@
 using jobSpark.core.Bases;
 using jobSpark.core.Features.vacancy.queries.Dtos;
 using jobSpark.core.Features.vacancy.queries.Model;
-using jobSpark.Infrastructure.Abstractions;
+using jobSpark.core.wrappers;
+using jobSpark.Domain.Entities;
 using jobSpark.Service.Abstracts;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace jobSpark.core.Features.vacancy.queries.Handler
 {
@@ -20,11 +17,13 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
     {
         private readonly IMapper mapper;
         private readonly IVacancyService vacancyService;
+        private readonly IApplicantVacancyService applicantVacancyService;
 
         public VacancyQueryHandler(IMapper mapper , IVacancyService vacancyService)
         {
             this.mapper = mapper;
             this.vacancyService = vacancyService;
+            this.applicantVacancyService = applicantVacancyService;
         }
         public async Task<Response<List<GetVacancyListDto>>> Handle(GetVacancyListQuery request, CancellationToken cancellationToken)
         {
