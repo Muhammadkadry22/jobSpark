@@ -1,4 +1,9 @@
-﻿using jobSpark.Domain.Entities;
+﻿using jobSpark.core.Features.ApplicantVacancy.queries.Dtos;
+using jobSpark.core.Features.certification.queries.Dtos;
+using jobSpark.core.Features.project.queries.Dtos;
+using jobSpark.core.Features.skills.queries.Dtos;
+using jobSpark.core.Features.workingHistory.queries.Dtos;
+using jobSpark.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +27,11 @@ namespace jobSpark.core.Features.vacancy.queries.Dtos
         public string? Email { get; set; }
         public string? UserId { get; set; }
 
-        public virtual ICollection<Project> Projects { get; set; } = new HashSet<Project>();
-        public virtual ICollection<Certification> Certifications { get; set; } = new HashSet<Certification>();
-        public virtual ICollection<WorkingHistory> WorkingHistories { get; set; } = new HashSet<WorkingHistory>();
-        public virtual ICollection<Skill> Skills { get; set; } = new HashSet<Skill>();
-        public virtual ICollection<ApplicantVacancy> ApplicantVacancies { get; set; }
+        public virtual ICollection<ProjectDto> Projects { get; set; } = new HashSet<ProjectDto>();
+        public virtual ICollection<CertificateDto> Certifications { get; set; } = new HashSet<CertificateDto>();
+        public virtual ICollection<WorkingHistoryDto> WorkingHistories { get; set; } = new HashSet<WorkingHistoryDto>();
+        public virtual ICollection<SkillDto> Skills { get; set; } = new HashSet<SkillDto>();
+        public virtual ICollection<ApplicantVacancyDto> ApplicantVacancies { get; set; }
 
     }
 }

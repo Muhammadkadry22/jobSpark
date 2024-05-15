@@ -14,7 +14,7 @@ namespace jobSpark.Api.Controllers
     public class VacancyController : AppControllerBase
     {
         [HttpGet]
-        [Authorize(Roles = "Company")]
+        [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> GetVacancyList()
         {
             var response = await Mediator.Send(new GetVacancyListQuery());
@@ -23,7 +23,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet("{id}")]
-        [Authorize(Roles ="Applicant")]
+        [Authorize(Roles =SharedResourcesKeys.APPLICANTROLE)]
         public async Task<IActionResult> GetVacancyById(int id)
         {
             var response = await Mediator.Send(new GetVacancyByIdQuery { Id = id });
