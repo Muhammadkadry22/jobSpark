@@ -14,38 +14,24 @@ namespace jobSpark.core.mapping.ApplicantMapping
         public ApplicantProfile()
         {
 
-            CreateMap<Applicant, GetApplicantByIdDto>()
-                .ForMember(des => des.Certifications, opt => opt.MapFrom(src => src.Certifications))
-                .ForMember(des => des.WorkingHistories, opt => opt.MapFrom(src => src.WorkingHistories))
-                .ForMember(des => des.Projects, opt => opt.MapFrom(src => src.Projects))
-                .ForMember(des => des.Skills, opt => opt.MapFrom(src => src.Skills))
-                .ForMember(des => des.ApplicantVacancies, opt => opt.MapFrom(src => src.ApplicantVacancies));
+            CreateMap<Applicant, GetApplicantByIdDto>();
+    
 
-            CreateMap<Project, ProjectDto>()
-                           .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                           .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.Skills))
-                           .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link));
+            CreateMap<Project, ProjectDto>();
+       
 
-            CreateMap<WorkingHistory, WorkingHistoryDto>()
-                           .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                           .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.StartDate))
-                           .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.EndDate))
-                           .ForMember(dest => dest.Position, opt => opt.MapFrom(src => src.Position));
+            CreateMap<WorkingHistory, WorkingHistoryDto>();
+           
 
-            CreateMap<Skill, SkillDto>()
-                           .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                           .ForMember(dest => dest.ApplicantId, opt => opt.MapFrom(src => src.ApplicantId));
+            CreateMap<Skill, SkillDto>();
+   
 
 
-            CreateMap<Certification, CertificateDto>()
-                           .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                           .ForMember(dest => dest.ApplicantId, opt => opt.MapFrom(src => src.ApplicantId))
-                           .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image))
-                           .ForMember(dest => dest.Institution, opt => opt.MapFrom(src => src.Institution));
+            CreateMap<Certification, CertificateDto>();
+         
 
-            CreateMap<ApplicantVacancy, ApplicantVacancyDto>()
-                          .ForMember(dest => dest.ApplicantId, opt => opt.MapFrom(src => src.ApplicantId))
-                          .ForMember(dest => dest.VacancyId, opt => opt.MapFrom(src => src.VacancyId));
+            CreateMap<ApplicantVacancy, ApplicantVacancyDto>();
+                      
 
         }
     }

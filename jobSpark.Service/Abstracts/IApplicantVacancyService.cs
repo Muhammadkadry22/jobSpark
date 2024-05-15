@@ -10,5 +10,6 @@ namespace jobSpark.Service.Abstracts
     public interface IApplicantVacancyService
     {
         Task<string> AddAppVacancyAsync(ApplicantVacancy appvacancyMapper);
+        Task<List<Applicant>> GetVacancyapplicants(int VacancyId);
     }
 }
