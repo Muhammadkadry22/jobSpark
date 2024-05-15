@@ -16,6 +16,8 @@ namespace jobSpark.core.Features.ApplicationUser.Queries.Models
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Brief { get; set; }
+
+       
  
     }
 }

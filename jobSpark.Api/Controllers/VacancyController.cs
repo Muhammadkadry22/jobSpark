@@ -52,5 +52,12 @@ namespace jobSpark.Api.Controllers
         {
             return NewResult(await Mediator.Send(command));
         }
+
+        [HttpGet("/showapplicants/{id}")]
+        [Authorize(Roles =SharedResourcesKeys.COMPANYROLE)]
+        public async Task<IActionResult> ShowApplicants(int id)
+        {
+            return NewResult(await Mediator.Send(new GetVacancyApplicantsQuery { Id = id }));
+        }
     }
 }

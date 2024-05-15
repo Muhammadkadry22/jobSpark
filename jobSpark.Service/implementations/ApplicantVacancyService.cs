@@ -24,5 +24,10 @@ namespace jobSpark.Service.implementations
             return "Added";
 
         }
+
+        public async Task<List<Applicant>> GetVacancyapplicants (int VacancyId)
+        {
+            return await unitOfWork.ApplicantVacancies.GetApplicantsByVacancyId(VacancyId);
+        }
     }
 }

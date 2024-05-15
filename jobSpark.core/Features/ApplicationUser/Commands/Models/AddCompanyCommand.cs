@@ -23,5 +23,8 @@ namespace jobSpark.core.Features.ApplicationUser.Queries.Models
         public int? Size { get; set; }
         public string? Phone { get; set; }
         public string? Website { get; set; }
+
+       
+
     }
 }
