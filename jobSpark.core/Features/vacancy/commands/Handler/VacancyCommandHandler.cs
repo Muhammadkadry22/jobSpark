@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using jobSpark.core.Bases;
 using jobSpark.core.Features.vacancy.commands.Model;
+using jobSpark.core.Features.vacancy.queries.Dtos;
+using jobSpark.core.Features.vacancy.queries.Model;
 using jobSpark.Domain.Entities;
 using jobSpark.Service.Abstracts;
 using MediatR;
@@ -56,5 +58,7 @@ namespace jobSpark.core.Features.vacancy.commands.Handler
                 return Created("");
             else return BadRequest<string>();
         }
+
+        
     }
 }
