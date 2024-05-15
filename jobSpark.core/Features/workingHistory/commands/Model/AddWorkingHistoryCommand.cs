@@ -16,6 +16,6 @@ namespace jobSpark.core.Features.workingHistory.commands.Model
 
         public string? Position { get; set; }
 
-        public int? ApplicantId { get; set; }
+       // public int? ApplicantId { get; set; }
     }
 }
