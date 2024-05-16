@@ -3,6 +3,7 @@ using jobSpark.Service;
 using jobSpark.Infrastructure;
 using jobSpark.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(
                 .AddCoreDependencies()
                 .AddServiceDependencies();*/
 
+/*Serilog Configration*/
+
+var configSerilog = new ConfigurationBuilder()
+              .AddJsonFile("appsettings.json")
+              .Build();
+
+Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configSerilog)
+                .CreateLogger();
 
 
 builder.Services.AddCors(corsOptions => {
