@@ -3,6 +3,7 @@ using jobSpark.core.Features.ApplicationUser.Commands.Models;
 using jobSpark.core.Features.ApplicationUser.Queries.Models;
 using jobSpark.Domain.AppMetaData;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace jobSpark.Api.Controllers
 {
@@ -29,6 +30,8 @@ namespace jobSpark.Api.Controllers
         [HttpPost(Router.Authentication.SignIn)]
         public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
         {
+            Log.Information("Serilog بتمسي");
+            throw new Exception("Exception مقصود");
             var response = await Mediator.Send(command);
             return NewResult(response);
 
