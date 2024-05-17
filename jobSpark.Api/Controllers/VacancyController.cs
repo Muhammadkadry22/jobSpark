@@ -18,8 +18,9 @@ namespace jobSpark.Api.Controllers
         [HttpGet("/GetVacancyPaginated")]
         public async Task<IActionResult> GetVacancyPaginated([FromQuery] GetVacancyPaginatedListQuery query)
         {
+            
             var response = await Mediator.Send(query);
-            return Ok(response);
+            return NewResult(response);
         }
 
 
