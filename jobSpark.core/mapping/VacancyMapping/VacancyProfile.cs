@@ -26,6 +26,7 @@ namespace jobSpark.core.mapping.VacancyMapping
             CreateMap<AddVacancyCommand, Vacancy>();
 
             CreateMap<Vacancy, GetVacancyPaginatedListResponse>();
+            CreateMap<Applicant, GetVacancyApplicantsPaginatedResponse>();
 
             CreateMap<ApplyToVacancyCommand, ApplicantVacancy>();
 

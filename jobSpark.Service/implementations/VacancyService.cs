@@ -1,6 +1,7 @@
 ﻿using jobSpark.Domain.Entities;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
+using Microsoft.IdentityModel.Tokens;
 
 namespace jobSpark.Service.implementations
 {
@@ -41,6 +42,10 @@ namespace jobSpark.Service.implementations
         public IQueryable<Vacancy> FilliterVacanciesPaginatedQuerable(string search)
         {
             var querable = unitOfWork.Vacancies.GetTableNoTracking().AsQueryable();
+            if (querable.IsNullOrEmpty())
+            {
+                return Enumerable.Empty<Vacancy>().AsQueryable();
+            }
             if (search != null)
             {
                 querable = querable.Where(x => x.Name.Contains(search) || x.Company.Name.Contains(search));
@@ -48,10 +53,42 @@ namespace jobSpark.Service.implementations
             return querable;
         }
 
-        public IQueryable<Vacancy> GetVacancyApplicantsQuerable()
+
+
+        public IQueryable<Applicant> GetApplicantsByVacanyIdPaginatedQuerable(int vacancyId)
         {
-            throw new NotImplementedException();
+            var applicantVacncies = unitOfWork.ApplicantVacancies.GetTableNoTracking().AsQueryable().Where(v => v.VacancyId == vacancyId);
+            var applicants = unitOfWork.applicants.GetTableNoTracking().AsQueryable();
+
+            if (!applicants.IsNullOrEmpty() && !applicantVacncies.IsNullOrEmpty())
+            {
+                var query = from a in applicantVacncies
+                            join b in applicants on a.ApplicantId equals b.Id
+                            select new Applicant
+                            {
+                                Id = a.ApplicantId,
+                                Name = b.Name,
+                                Email = b.Email,
+                                Phone = b.Phone,
+                                Website = b.Website,
+                                Cv = b.Cv,
+                                Description = b.Description,
+                                Brief = b.Brief,
+                                GraduationYear = b.GraduationYear,
+                                Country = b.Country,
+                                Experience = b.Experience,
+                                Certifications = b.Certifications,
+                                Projects = b.Projects,
+                                Skills = b.Skills,
+                                WorkingHistories = b.WorkingHistories
+                            };
+                return query;
+            }
+
+            return Enumerable.Empty<Applicant>().AsQueryable();
         }
+
+
     }
 
 

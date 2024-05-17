@@ -12,7 +12,7 @@ namespace jobSpark.Service.Abstracts
 
         public IQueryable<Vacancy> GetVacanciesQuerable();
 
-        public IQueryable<Vacancy> GetVacancyApplicantsQuerable();
+        public IQueryable<Applicant> GetApplicantsByVacanyIdPaginatedQuerable(int vacancyId);
 
         public IQueryable<Vacancy> FilliterVacanciesPaginatedQuerable(string search);
 
