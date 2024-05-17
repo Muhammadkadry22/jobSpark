@@ -38,6 +38,8 @@ Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configSerilog)
                 .CreateLogger();
 
+builder.Services.AddSerilog();
+
 
 builder.Services.AddCors(corsOptions => {
     corsOptions.AddPolicy("MyPolicy", corsPolicyBuilder =>
@@ -61,6 +63,7 @@ app.UseRouting();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 
 app.UseAuthentication();
 
