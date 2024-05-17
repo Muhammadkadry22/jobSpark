@@ -35,7 +35,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet("{id}")]
-        [Authorize(Roles =SharedResourcesKeys.APPLICANTROLE)]
+        [Authorize(Roles = SharedResourcesKeys.APPLICANTROLE)]
         public async Task<IActionResult> GetVacancyById(int id)
         {
             var response = await Mediator.Send(new GetVacancyByIdQuery { Id = id });
@@ -65,8 +65,19 @@ namespace jobSpark.Api.Controllers
             return NewResult(await Mediator.Send(command));
         }
 
+
+        /* [HttpGet("/showapplicantsPaginated")]
+         [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
+         public async Task<IActionResult> ShowApplicantsPaginated([FromQuery] GetVacancyApplicantsPaginatedQuery query)
+         {
+             var response = await Mediator.Send(query);
+             return Ok(response);
+         }*/
+
+
+
         [HttpGet("/showapplicants/{id}")]
-        [Authorize(Roles =SharedResourcesKeys.COMPANYROLE)]
+        [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> ShowApplicants(int id)
         {
             return NewResult(await Mediator.Send(new GetVacancyApplicantsQuery { Id = id }));
