@@ -11,15 +11,18 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
     public class VacancyQueryHandler : ResponseHandler,
 
 
-                                       IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>,
-                                         IRequestHandler<GetVacancyByIdQuery, Response<GetVacancyByIdDto>>,
-                                         IRequestHandler<GetVacancyPaginatedListQuery, PaginatedResult<GetVacancyPaginatedListResponse>>,
-                                               IRequestHandler<GetVacancyApplicantsQuery,Response<List<GetVacancyApplicantsDto>>>
+                                       IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>, 
+                                         IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>,
+                                        IRequestHandler<GetVacancyApplicantsQuery,Response<List<GetVacancyApplicantsDto>>>,
+
+ 
+                                         IRequestHandler<GetVacancyPaginatedListQuery, PaginatedResult<GetVacancyPaginatedListResponse>>
 
     {
         private readonly IMapper mapper;
         private readonly IVacancyService vacancyService;
         private readonly IApplicantVacancyService applicantVacancyService;
+
 
         public VacancyQueryHandler(IMapper mapper , IVacancyService vacancyService, IApplicantVacancyService applicantVacancyService)
 
@@ -45,13 +48,14 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
             return result;
         }
 
+
         public async Task<Response<List<GetVacancyApplicantsDto>>> Handle(GetVacancyApplicantsQuery request, CancellationToken cancellationToken)
         {
             var vacancyApplicants = await applicantVacancyService.GetVacancyapplicants(request.Id);
-            if (vacancyApplicants.Count ==0) return NotFound<List<GetVacancyApplicantsDto>>();
+            if (vacancyApplicants.Count == 0) return NotFound<List<GetVacancyApplicantsDto>>();
             var vacancyApplicantsMapper = mapper.Map<List<GetVacancyApplicantsDto>>(vacancyApplicants);
             return Success(vacancyApplicantsMapper);
-
+        }
         public async Task<PaginatedResult<GetVacancyPaginatedListResponse>> Handle(GetVacancyPaginatedListQuery request, CancellationToken cancellationToken)
         {
             //Expression<Func<Vacancy, GetVacancyPaginatedListResponse>> expression = e => new GetVacancyPaginatedListResponse(e.Name , e.CategoryId , e.OpenDate , e.State , e.Description , e.Category.Name);

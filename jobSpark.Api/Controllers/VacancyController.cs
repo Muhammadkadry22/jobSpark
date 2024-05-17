@@ -20,7 +20,7 @@ namespace jobSpark.Api.Controllers
         {
             
             var response = await Mediator.Send(query);
-            return NewResult(response);
+            return Ok(response);
         }
 
 
