@@ -1,4 +1,5 @@
-﻿using jobSpark.core.Features.vacancy.queries.Dtos;
+﻿using jobSpark.core.Bases;
+using jobSpark.core.Features.vacancy.queries.Dtos;
 using jobSpark.core.wrappers;
 using MediatR;
 
