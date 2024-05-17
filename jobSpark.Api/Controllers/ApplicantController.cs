@@ -1,4 +1,4 @@
-﻿using jobSpark.Api.Base;
+﻿    using jobSpark.Api.Base;
 using jobSpark.core.Features.Applicant.Queries.Model;
 using Microsoft.AspNetCore.Mvc;
 
