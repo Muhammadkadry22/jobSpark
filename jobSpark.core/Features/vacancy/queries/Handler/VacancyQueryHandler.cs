@@ -13,13 +13,14 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
     public class VacancyQueryHandler : ResponseHandler,
 
                                        IRequestHandler<GetVacancyListQuery, Response<List<GetVacancyListDto>>>, 
-                                         IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>
+                                         IRequestHandler<GetVacancyByIdQuery,Response<GetVacancyByIdDto>>,
+                                        IRequestHandler<GetVacancyApplicantsQuery,Response<List<GetVacancyApplicantsDto>>>
     {
         private readonly IMapper mapper;
         private readonly IVacancyService vacancyService;
         private readonly IApplicantVacancyService applicantVacancyService;
 
-        public VacancyQueryHandler(IMapper mapper , IVacancyService vacancyService)
+        public VacancyQueryHandler(IMapper mapper , IVacancyService vacancyService, IApplicantVacancyService applicantVacancyService)
         {
             this.mapper = mapper;
             this.vacancyService = vacancyService;
@@ -42,6 +43,12 @@ namespace jobSpark.core.Features.vacancy.queries.Handler
             return result;
         }
 
-
+        public async Task<Response<List<GetVacancyApplicantsDto>>> Handle(GetVacancyApplicantsQuery request, CancellationToken cancellationToken)
+        {
+            var vacancyApplicants = await applicantVacancyService.GetVacancyapplicants(request.Id);
+            if (vacancyApplicants.Count ==0) return NotFound<List<GetVacancyApplicantsDto>>();
+            var vacancyApplicantsMapper = mapper.Map<List<GetVacancyApplicantsDto>>(vacancyApplicants);
+            return Success(vacancyApplicantsMapper);
+        }
     }
 }
