@@ -5,21 +5,6 @@ namespace jobSpark.core.Features.vacancy.queries.Dtos
     public class GetVacancyPaginatedListResponse
     {
 
-        public GetVacancyPaginatedListResponse(int id, string VacancyName, DateTime openDate, EState state, string description, int? applicantCount, int? reviewCount, int? categoryId, string? CategoryName, int? companyId, string? CompanyName)
-        {
-            Id = id;
-            this.VacancyName = VacancyName;
-            OpenDate = openDate;
-            State = state;
-            Description = description;
-            ApplicantCount = applicantCount;
-            ReviewCount = reviewCount;
-            CategoryId = categoryId;
-            this.CategoryName = CategoryName;
-            CompanyId = companyId;
-            this.CompanyName = CompanyName;
-        }
-
         public int Id { get; set; }
         public string? VacancyName { get; set; }
         public DateTime OpenDate { get; set; }
