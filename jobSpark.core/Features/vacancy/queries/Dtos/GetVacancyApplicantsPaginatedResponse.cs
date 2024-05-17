@@ -1,4 +1,6 @@
-﻿namespace jobSpark.core.Features.vacancy.queries.Dtos
+﻿using jobSpark.Domain.Entities;
+
+namespace jobSpark.core.Features.vacancy.queries.Dtos
 {
     public class GetVacancyApplicantsPaginatedResponse
     {
@@ -13,5 +15,10 @@
         public string? Phone { get; set; }
         public string? Description { get; set; }
         public string? Email { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; } = new HashSet<Project>();
+        public virtual ICollection<Certification> Certifications { get; set; } = new HashSet<Certification>();
+        public virtual ICollection<WorkingHistory> WorkingHistories { get; set; } = new HashSet<WorkingHistory>();
+        public virtual ICollection<Skill> Skills { get; set; } = new HashSet<Skill>();
     }
 }

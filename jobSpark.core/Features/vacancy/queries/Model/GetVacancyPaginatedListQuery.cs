@@ -4,7 +4,7 @@ using MediatR;
 
 namespace jobSpark.core.Features.vacancy.queries.Model
 {
-    public class GetVacancyPaginatedListQuery : IRequest<PaginatedResult<GetVacancyPaginatedListResponse>>
+    public class GetVacancyPaginatedListQuery : IRequest<Bases.Response<PaginatedResult<GetVacancyPaginatedListResponse>>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
