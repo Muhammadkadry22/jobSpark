@@ -32,7 +32,7 @@ namespace jobSpark.Api.Controllers
         public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
         {
            
-            throw new Exception("huihuuhohihoi");
+            //throw new Exception("huihuuhohihoi");
             Log.Information("Serilog بتمسي");
             Log.Error("jiojio");
             Log.Fatal("vgrvgbvgs");
