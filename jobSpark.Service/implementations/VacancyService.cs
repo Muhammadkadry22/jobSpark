@@ -47,6 +47,11 @@ namespace jobSpark.Service.implementations
             }
             return querable;
         }
+
+        public IQueryable<Vacancy> GetVacancyApplicantsQuerable()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
