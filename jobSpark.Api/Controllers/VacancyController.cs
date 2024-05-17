@@ -4,6 +4,7 @@ using jobSpark.core.Features.vacancy.queries.Model;
 using jobSpark.core.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace jobSpark.Api.Controllers
 {
@@ -72,6 +73,7 @@ namespace jobSpark.Api.Controllers
         public async Task<IActionResult> ShowApplicantsPaginated([FromQuery] GetVacancyApplicantsPaginatedQuery query)
         {
             var response = await Mediator.Send(query);
+            Log.Information("Response data: {@Response}", response);
             return NewResult(response);
         }
 
