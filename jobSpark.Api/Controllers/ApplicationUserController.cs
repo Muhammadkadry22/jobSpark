@@ -10,7 +10,8 @@ namespace jobSpark.Api.Controllers
 
     public class ApplicationUserController: AppControllerBase
     {
-     
+       
+
         [HttpPost(Router.ApplicationUserRouting.Create)]
         public async Task<IActionResult> Create([FromForm] AddApplicantCommand command)
         {
@@ -30,8 +31,11 @@ namespace jobSpark.Api.Controllers
         [HttpPost(Router.Authentication.SignIn)]
         public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
         {
+           
+            //throw new Exception("huihuuhohihoi");
             Log.Information("Serilog بتمسي");
-            throw new Exception("Exception مقصود");
+            Log.Error("jiojio");
+            Log.Fatal("vgrvgbvgs");
             var response = await Mediator.Send(command);
             return NewResult(response);
 
