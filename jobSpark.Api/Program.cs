@@ -4,6 +4,7 @@ using jobSpark.Infrastructure;
 using jobSpark.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using jobSpark.core.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,7 +65,7 @@ app.UseRouting();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
+app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseAuthentication();
 
 app.UseAuthorization();
