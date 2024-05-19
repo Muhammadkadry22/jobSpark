@@ -16,22 +16,22 @@ namespace jobSpark.Service.implementations
             this.fileService = fileService;
         }
 
-        public async Task<string> AddApplicant(Applicant applicant,IFormFile file)
+        public async Task<string> AddApplicant(Applicant applicant, IFormFile file)
         {
-            var res = unitOfWork._userManager.Users.FirstOrDefault(u=>u.Email == applicant.Email);
-            var fileUrl=await fileService.UploadFile("Applicant",file);
-            switch(fileUrl)
+            var res = unitOfWork._userManager.Users.FirstOrDefault(u => u.Email == applicant.Email);
+            var fileUrl = await fileService.UploadFile("Applicant", file);
+            switch (fileUrl)
             {
-                case "NoFile":return "NoFile";
+                case "NoFile": return "NoFile";
                 case "FailedToUploadFile": return "FailedToUploadFile";
             }
-            applicant.Cv=fileUrl;
+            applicant.Cv = fileUrl;
 
             if (res != null)
-            {   
+            {
                 applicant.UserId = res.Id;
             }
-           
+
             await unitOfWork.applicants.AddAsync(applicant);
             await unitOfWork.SaveChangesAsync();
             return "Added";

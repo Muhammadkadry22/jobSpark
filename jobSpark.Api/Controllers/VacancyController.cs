@@ -20,7 +20,7 @@ namespace jobSpark.Api.Controllers
         [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> GetVacancyPaginated([FromQuery] GetVacancyPaginatedListQuery query)
         {
-            
+
             var response = await Mediator.Send(query);
             return NewResult(response);
         }
@@ -28,7 +28,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
+        //[Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> GetVacancyList()
         {
             var response = await Mediator.Send(new GetVacancyListQuery());

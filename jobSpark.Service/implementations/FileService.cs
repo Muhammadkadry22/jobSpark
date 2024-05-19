@@ -17,7 +17,7 @@ namespace jobSpark.Service.implementations
         }
         public async Task<string> UploadFile(string location, IFormFile file)
         {
-            var path = _webHostEnvironment.WebRootPath+"/"+location+"/";
+            var path = _webHostEnvironment.WebRootPath+"/"+location;
             var extention=Path.GetExtension(file.FileName);
             var fileName=Guid.NewGuid().ToString().Replace("-",string.Empty)+extention;
         if (file.Length>0)
