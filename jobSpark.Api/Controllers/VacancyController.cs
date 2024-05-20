@@ -28,7 +28,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
+        // [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> GetVacancyList()
         {
             var response = await Mediator.Send(new GetVacancyListQuery());
@@ -53,7 +53,7 @@ namespace jobSpark.Api.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
+        //  [Authorize(Roles = SharedResourcesKeys.COMPANYROLE)]
         public async Task<IActionResult> Create([FromBody] AddVacancyCommand command)
         {
             var response = await Mediator.Send(command);

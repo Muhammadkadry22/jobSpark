@@ -1,13 +1,7 @@
 ﻿using FluentValidation;
 using jobSpark.core.Features.skills.commands.Model;
 using jobSpark.core.Resources;
-using jobSpark.Domain.Entities;
 using jobSpark.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace jobSpark.core.Features.skills.commands.Validator
 {
@@ -28,7 +22,7 @@ namespace jobSpark.core.Features.skills.commands.Validator
             this.applicationUserService = applicationUserService;
         }
 
-       
+
         public void ApplyValidationRules()
         {
             RuleFor(x => x.Name)
@@ -36,12 +30,13 @@ namespace jobSpark.core.Features.skills.commands.Validator
         }
         public void ApplyCustomValidationRules()
         {
-            RuleFor(x=>x.Name)
-                .MustAsync(async (name, CancellationToken)=> {
+            RuleFor(x => x.Name)
+                .MustAsync(async (name, CancellationToken) =>
+                {
                     string userId = await applicationUserService.getUserIdAsync();
-                    int applicantId =await  applicantUserService.GetApplicantIdByUserId(userId);
+                    int applicantId = await applicantUserService.GetApplicantIdByUserId(userId);
                     return !await skillService.SkillExistsForApplicant(name, applicantId);
-                    })
+                })
                 .WithMessage(SharedResourcesKeys.IsExist);
         }
 

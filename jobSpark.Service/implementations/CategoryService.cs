@@ -1,11 +1,7 @@
 ﻿using jobSpark.Domain.Entities;
 using jobSpark.Infrastructure.UnitOfWork;
 using jobSpark.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace jobSpark.Service.implementations
 {
@@ -21,7 +17,13 @@ namespace jobSpark.Service.implementations
         {
             return (await unitOfWork.Categories.GetAllAsync()).ToList();
         }
-       
+        public async Task<bool> IsCategoryIdExist(int? categoryId)
+        {
+            if (categoryId == null) return false;
+            return await unitOfWork.Categories.GetTableNoTracking().AnyAsync(x => x.Id.Equals(categoryId));
+        }
+
+
 
     }
 }
