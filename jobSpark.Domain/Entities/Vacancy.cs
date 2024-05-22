@@ -20,7 +20,7 @@ namespace jobSpark.Domain.Entities
         public int? ApplicantCount { get; set; } = 0;
         public int? ReviewCount { get; set; } =0;
         public int? CategoryId { get; set; } 
-        [ForeignKey("CategoryId")]
+        [ForeignKey("CategoryId")] 
         public virtual Category? Category { get; set; }
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
