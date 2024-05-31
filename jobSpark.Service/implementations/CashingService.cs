@@ -28,7 +28,6 @@ namespace jobSpark.Service.implementations
             return default(T);            
         }
 
-
         public async Task<bool> setData<T>(string key, T value, TimeSpan expiryTime)
         {
             return await _cashDB.StringSetAsync(key,JsonSerializer.Serialize(value), expiryTime);
@@ -43,3 +42,5 @@ namespace jobSpark.Service.implementations
         }
     }
 }
+
+//

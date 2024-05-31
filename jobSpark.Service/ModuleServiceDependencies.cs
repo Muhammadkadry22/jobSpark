@@ -30,6 +30,7 @@ namespace jobSpark.Service
 
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IAchievementService,AchievementService>();
+            services.AddTransient<ICashingService, CashingService>();
 
 
             return services;
